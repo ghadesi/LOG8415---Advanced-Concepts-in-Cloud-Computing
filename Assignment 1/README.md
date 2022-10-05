@@ -1,6 +1,8 @@
 
 ## Assignmnet 1 : Cluster Benchmarking using EC2 Virtual Machines and Elastic Load Balancer (ELB)
 
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+
 #### Inctance Information:
 
 
@@ -24,12 +26,12 @@
   - Download `labsusers.pem` (Certificate file) and change your directory to that downlowded file.
   
   - Change the permission of the file.
-  ```bash
+  ```console
   $ chmod 400 labsuser.pem
   ```
   
   - To access into each VM run the below command based on especific VM IPv4:
-  ```bash
+  ```console
   $ ssh -i labsusers.pem ubuntu@<public-ip>
   ```
 
@@ -37,10 +39,10 @@
 
 To install the flask webserver for each VM, please follow the below instruction.
 
-```bash
+```console
 $ sudo apt update
 $ mkdir flask_application && cd flask_application
-$ sudo apt install python3-pip
+$ sudo apt install python3-pip -y
 $ sudo apt install python3-flask -y
 
 $ echo "from flask import Flask
@@ -48,7 +50,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return "VM name: <VM_name>"
+    return 'VM name: <VM_name>'
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=80, debug=True)" > my_app.py
@@ -56,3 +58,13 @@ if __name__ == '__main__':
           $ export FLASK_APP=my_app.py
 $ nohup sudo python3 my_app.py &
 ```
+##### Setup Outcome
+![pic 1](Setup_pics/1.png)
+![pic 2](Setup_pics/2.png)
+![pic 3](Setup_pics/3.png)
+![pic 4](Setup_pics/4.png)
+![pic 5](Setup_pics/5.png)
+![pic 6](Setup_pics/6.png)
+![pic 7](Setup_pics/7.png)
+![pic 8](Setup_pics/8.png)
+![pic 9](Setup_pics/9.png)
