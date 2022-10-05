@@ -1,5 +1,5 @@
 
-## Assignmnet 1
+## Assignmnet 1 : Cluster Benchmarking using EC2 Virtual Machines and Elastic Load Balancer (ELB)
 
 #### Inctance Information:
 
@@ -33,3 +33,26 @@
   $ ssh -i labsusers.pem ubuntu@<public-ip>
   ```
 
+#### Setup Instances
+
+To install the flask webserver for each VM, please follow the below instruction.
+
+```bash
+$ sudo apt update
+$ mkdir flask_application && cd flask_application
+$ sudo apt install python3-pip
+$ sudo apt install python3-flask -y
+
+$ echo "from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+def hello():
+    return "VM name: <VM_name>"
+
+if __name__ == '__main__':
+    app.run(host="0.0.0.0", port=80, debug=True)" > my_app.py
+
+          $ export FLASK_APP=my_app.py
+$ nohup sudo python3 my_app.py &
+```
