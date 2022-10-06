@@ -74,4 +74,4 @@ nohup sudo python3 my_app.py &
 ![pic 9](Setup_pics/9.png)
 
 #### Setup ALB [!](https://www.youtube.com/watch?v=0XMsnAgHXoo&ab_channel=TinyTechnicalTutorials)
-[![Watch the video](https://img.youtube.com/vi/T-D1KVIuvjA/maxresdefault.jpg)](ALB.mov)
+[![asciicast](Setup_pics/ALB.png)](ALB.mov)
