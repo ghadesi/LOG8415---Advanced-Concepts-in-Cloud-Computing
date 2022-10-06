@@ -63,8 +63,6 @@ nohup sudo python3 my_app.py &
 ```
 
 
-
-
 ##### Setup Outcome
 ![pic 1](Setup_pics/1.png)
 ![pic 2](Setup_pics/2.png)
