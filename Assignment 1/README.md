@@ -6,18 +6,18 @@
 #### Inctance Information:
 
 
-| #  | Type       | Name       | IPv4 Public IP | Description |
-| :- | :--------- | :--------- | :------------- | :---------- |
-| 1. | `M4-large` | M4-large-1 | 54.164.0.164.  | |
-| 2. | 'M4-large' | M4-large-2 | 44.211.161.152 | |
-| 3. | 'M4-large' | M4-large-3 | 172.31.81.143  | |
-| 4. | 'M4-large' | M4-large-4 | 18.233.225.20  | |
-| 5. | 'M4-large' | M4-large-5 | 3.94.79.209    | |
-| 6. | 'T2-large' | T2-large-1 | 54.160.231.184 | |
-| 7. | 'T2-large' | T2-large-2 | 3.87.80.104    | |
-| 8. | 'T2-large' | T2-large-3 | 184.73.93.102  | |
-| 9. | 'T2-large' | T2-large-4 | 3.95.231.194   | |
-|10. | 'T2-large' | T2-large-5 | ---            | |
+| #  | Type       | Name       | IPv4 Public IP | Security group name | OS     | Availability zone | Cluster    |
+| :- | :--------- | :--------- | :------------- | :------------------ |:------ | :---------------- | :--------- |
+| 1. | `M4-large` | M4-large-1 | 44.203.190.208 |      ALB_SG_M       | Ubuntu |     us-east-1a    | Cluster M  |
+| 2. | `M4-large` | M4-large-2 | 44.211.161.152 |      ALB_SG_M       | Ubuntu |     us-east-1b    | Cluster M  |
+| 3. | `M4-large` | M4-large-3 | 44.202.101.227 |      ALB_SG_M       | Ubuntu |     us-east-1c    | Cluster M  |
+| 4. | `M4-large` | M4-large-4 | 18.233.225.20  |      ALB_SG_M       | Ubuntu |     us-east-1d    | Cluster M  |
+| 5. | `T2-large` | T2-large-1 | 100.26.134.242 |      ALB_SG_T       | Ubuntu |     us-east-1a    | Cluster T  |
+| 6. | `T2-large` | T2-large-2 | 34.227.58.149  |      ALB_SG_T       | Ubuntu |     us-east-1b    | Cluster T  |
+| 7. | `T2-large` | T2-large-3 | 54.242.110.108 |      ALB_SG_T       | Ubuntu |     us-east-1c    | Cluster T  |
+| 8. | `T2-large` | T2-large-4 | 54.89.60.191   |      ALB_SG_T       | Ubuntu |     us-east-1d    | Cluster T  |
+| 9. | `T2-large` | T2-large-5 | 3.94.79.209    |      ALB_SG_T       | Ubuntu |     us-east-1e    | Cluster T  |
+
 
 
 #### SSH Access
@@ -40,24 +40,31 @@
 To install the flask webserver for each VM, please follow the below instruction.
 
 ```console
-$ sudo apt update
-$ mkdir flask_application && cd flask_application
-$ sudo apt install python3-pip -y
-$ sudo apt install python3-flask -y
+#!/bin/bash
+# Install necessary files and run Flask in the back ground 
 
-$ echo "from flask import Flask
+sudo apt update
+mkdir flask_application && cd flask_application
+sudo apt install python3-pip python3-flask -y
+
+INSTANCE_NAME='Amin'
+
+echo "from flask import Flask
 app = Flask(__name__)
 
-@app.route("/")
+@app.route('/')
 def hello():
-    return 'VM name: <VM_name>'
+    return 'VM name: $INSTANCE_NAME'
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=80, debug=True)" > my_app.py
+    app.run(host='0.0.0.0', port=80, debug=True)" > my_app.py
 
-          $ export FLASK_APP=my_app.py
-$ nohup sudo python3 my_app.py &
+nohup sudo python3 my_app.py &
 ```
+
+
+
+
 ##### Setup Outcome
 ![pic 1](Setup_pics/1.png)
 ![pic 2](Setup_pics/2.png)
