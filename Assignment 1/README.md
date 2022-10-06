@@ -62,16 +62,5 @@ if __name__ == '__main__':
 nohup sudo python3 my_app.py &
 ```
 
-##### Setup Outcome
-![pic 1](Setup_pics/1.png)
-![pic 2](Setup_pics/2.png)
-![pic 3](Setup_pics/3.png)
-![pic 4](Setup_pics/4.png)
-![pic 5](Setup_pics/5.png)
-![pic 6](Setup_pics/6.png)
-![pic 7](Setup_pics/7.png)
-![pic 8](Setup_pics/8.png)
-![pic 9](Setup_pics/9.png)
-
 #### Setup ALB [!](https://www.youtube.com/watch?v=0XMsnAgHXoo&ab_channel=TinyTechnicalTutorials)
 [![asciicast](Setup_pics/ALB.png)](ALB.mov)
