@@ -6,17 +6,17 @@
 #### Inctance Information:
 
 
-| #  | Type       | Name       | IPv4 Public IP | Security group name | OS     | Availability zone | Cluster    |
-| :- | :--------- | :--------- | :------------- | :------------------ |:------ | :---------------- | :--------- |
-| 1. | `M4-large` | M4-large-1 | 44.203.190.208 |      ALB_SG_M       | Ubuntu |     us-east-1a    | Cluster M  |
-| 2. | `M4-large` | M4-large-2 | 44.211.161.152 |      ALB_SG_M       | Ubuntu |     us-east-1b    | Cluster M  |
-| 3. | `M4-large` | M4-large-3 | 44.202.101.227 |      ALB_SG_M       | Ubuntu |     us-east-1c    | Cluster M  |
-| 4. | `M4-large` | M4-large-4 | 18.233.225.20  |      ALB_SG_M       | Ubuntu |     us-east-1d    | Cluster M  |
-| 5. | `T2-large` | T2-large-1 | 100.26.134.242 |      ALB_SG_T       | Ubuntu |     us-east-1a    | Cluster T  |
-| 6. | `T2-large` | T2-large-2 | 34.227.58.149  |      ALB_SG_T       | Ubuntu |     us-east-1b    | Cluster T  |
-| 7. | `T2-large` | T2-large-3 | 54.242.110.108 |      ALB_SG_T       | Ubuntu |     us-east-1c    | Cluster T  |
-| 8. | `T2-large` | T2-large-4 | 54.89.60.191   |      ALB_SG_T       | Ubuntu |     us-east-1d    | Cluster T  |
-| 9. | `T2-large` | T2-large-5 | 3.94.79.209    |      ALB_SG_T       | Ubuntu |     us-east-1e    | Cluster T  |
+| #  | Type       | Name       | IPv4 Public IP | Security group name | OS     | Availability zone | Cluster    | Target Group   |
+| :- | :--------- | :--------- | :------------- | :------------------ |:------ | :---------------- | :--------- | :------------- |
+| 1. | `M4-large` | M4-large-1 | 44.203.190.208 |      ALB_SG_M       | Ubuntu |     us-east-1a    | Cluster M  | Target-Group-M |
+| 2. | `M4-large` | M4-large-2 | 44.211.161.152 |      ALB_SG_M       | Ubuntu |     us-east-1b    | Cluster M  | Target-Group-M |
+| 3. | `M4-large` | M4-large-3 | 44.202.101.227 |      ALB_SG_M       | Ubuntu |     us-east-1c    | Cluster M  | Target-Group-M |
+| 4. | `M4-large` | M4-large-4 | 18.233.225.20  |      ALB_SG_M       | Ubuntu |     us-east-1d    | Cluster M  | Target-Group-M |
+| 5. | `T2-large` | T2-large-1 | 100.26.134.242 |      ALB_SG_T       | Ubuntu |     us-east-1a    | Cluster T  | Target-Group-T |
+| 6. | `T2-large` | T2-large-2 | 34.227.58.149  |      ALB_SG_T       | Ubuntu |     us-east-1b    | Cluster T  | Target-Group-T |
+| 7. | `T2-large` | T2-large-3 | 54.242.110.108 |      ALB_SG_T       | Ubuntu |     us-east-1c    | Cluster T  | Target-Group-T |
+| 8. | `T2-large` | T2-large-4 | 54.89.60.191   |      ALB_SG_T       | Ubuntu |     us-east-1d    | Cluster T  | Target-Group-T |
+| 9. | `T2-large` | T2-large-5 | 3.94.79.209    |      ALB_SG_T       | Ubuntu |     us-east-1e    | Cluster T  | Target-Group-T |
 
 
 
@@ -62,7 +62,6 @@ if __name__ == '__main__':
 nohup sudo python3 my_app.py &
 ```
 
-
 ##### Setup Outcome
 ![pic 1](Setup_pics/1.png)
 ![pic 2](Setup_pics/2.png)
@@ -73,3 +72,5 @@ nohup sudo python3 my_app.py &
 ![pic 7](Setup_pics/7.png)
 ![pic 8](Setup_pics/8.png)
 ![pic 9](Setup_pics/9.png)
+
+#### Setup ALB [!](https://www.youtube.com/watch?v=0XMsnAgHXoo&ab_channel=TinyTechnicalTutorials)
