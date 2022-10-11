@@ -44,7 +44,7 @@ def create_m4large_cluster(client, keyPair, securityGroup):
 
 
 def create_t2large_cluster(client, keyPair, securityGroup):
-    print('Creating 4 instances of m4.large...')
+    print('Creating 4 instances of t2.large...')
     lowercase_a = 97
     ids = []
 
