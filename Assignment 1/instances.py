@@ -1,3 +1,56 @@
+def testUserdata_create_m4large_cluster(client, keyPair, securityGroup):
+    # I‌ create this function just for creating one instance and then check why user data not working
+    print('create one instance of m4.large...')
+    lowercase_a = 97
+    ids = []
+    #USERDATA_SCRIPT = "#!/bin/bash \n sudo su \n yum update -y \n yum install -y httpd \n systemctl start httpd \n systemctl enable httpd \n "
+    #here instead of flask I am installing apache 2 on the EC2 instance. I am providing -y option here to run this command silently
+    USERDATA_SCRIPT = '''#!/bin/bash
+    sudo apt update	
+    sudo apt install apache2 -y
+    apache2 -version
+    sudo systemctl status apache2
+    sudo echo “Hello World from $(hostname -f)” > /var/www/html/index.html'''
+
+    instance = 0
+    response = client.run_instances(
+            BlockDeviceMappings=[
+                {
+                    'DeviceName': '/dev/sdf',
+                    'Ebs': {
+                        'DeleteOnTermination': True,
+                        'VolumeSize': 8,
+                        'VolumeType': 'gp2',
+                    },
+                },
+            ],
+            ImageId='ami-08c40ec9ead489470',
+            InstanceType='m4.large',
+            KeyName=keyPair,
+            UserData=USERDATA_SCRIPT,
+            Placement={
+                'AvailabilityZone': 'us-east-1' + chr(lowercase_a + instance),
+            },
+            SecurityGroups=[
+                securityGroup,
+            ],
+            MaxCount=1,
+            MinCount=1,
+            TagSpecifications=[
+                {
+                    'ResourceType': 'instance',
+                    'Tags': [
+                        {
+                            'Key': 'name',
+                            'Value': 'cluster1'
+                        },
+                    ]
+                },
+            ],
+        )
+    ids.append(response["Instances"][0]["InstanceId"])
+    return ids
+
 def create_m4large_cluster(client, keyPair, securityGroup):
     print('Creating 5 instances of m4.large...')
     lowercase_a = 97
