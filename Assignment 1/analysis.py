@@ -2,7 +2,7 @@ import boto3
 from datetime import datetime, timedelta
 
 def main():
-
+    # For conect to aws we need some key to set. It can be found in AWS first page >> AWS detail >>‌ AWS CLI.
     aws_access_key_id = 'ASIAQJSMAGZDT52JX4MM'
     secret_access_key = 'dVq3C7vYNcHs6gwsWfUREkU+YMAB8Mms1cQXUvJs'
     session_token = 'FwoGZXIvYXdzED8aDLONnpYzhG7cywXQjSLEAS5IPHCLXfBUPX3BhWOw0bQ/BoBaSYDK4voOBvNG1bU9AF7Ra5niTOxP2WeZ1gMDWU3zFAfJM3IKUTXdARNI8OQYaFwyhXV+t3lmw0ZJKoA+KDqAi+rewK27CAI2ZyEAkNQSIk1pSZ7av5nGgo8VH7P9UL6Zlb5OpvlLLylYqxLLXzIJH/iFNJHq5beJht4k6EaureKn5LnZZbpP+8ZRVFL/yM8246JtGCLxceHgGrwTGB0roqHYOpSClZ6+D2dl8LmuOdwo3OmxmgYyLfZxCu66DT7R8bOOakkAA0eRPH97gJW79xE6rlJuFqr6GfzFeeWkneN23reerg=='
@@ -13,7 +13,7 @@ def main():
     region_name= 'us-east-1'
     )
 
-
+    # Here we capture the cpu_utilization for one of the instances by cpu_utilization 
     for id in ['i-0432eec2a235d3b4b']:
         cpu_utilization = client.get_metric_statistics(
         Period=300,
