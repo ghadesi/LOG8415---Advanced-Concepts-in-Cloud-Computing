@@ -4,7 +4,8 @@
 \usepackage{fullpage}
 \usepackage{graphicx,multirow}
 \usepackage{caption}
-\captionsetup{font=bf,belowskip=8pt}
+\usepackage[margin=1.52in]{geometry}
+\captionsetup{font=bf,belowskip=11pt}
 \usepackage{hyperref}
 \usepackage{amsmath}
 \usepackage{enumitem}
@@ -79,10 +80,55 @@
 	\paragraph{} In this section, we will go over the different sections that we 
 	worked on to be able to benchmark properly our 9 different instances. We will first
 	go over our virtual machines (instances), our  Elastic load balancer, Flask and 
-	our benchmark analysis.
+	our benchmark analysis. \bigskip
 
 	\subsection{Virtual Machines}
-		\paragraph{} 
-		\cite{2}\bigskip
+		\paragraph{} As said previously, for our virtual machines we will benchmark 9 instances 
+		of 2 different types. The types being T2.large and M4.large, who each have different 
+		characteristics. As for their number, it will be 4 T2.large instances and 5 M4.large instances. \\
+
+		As for their characteristics, T2.large  instances have double the memory in GiB for a total of 16GiB,
+		whereas M4.large have only 8GiB. Another slight difference is in their CPU Clock Speed, where the 
+		M4.large have a 2.4Ghz and the T2.large have a 2.3Ghz.
+		\bigskip
+
+	\subsection{Elastic Load Balancer}
+		\paragraph{} In our benchmark we will have to use the load balance that we created along with the instances.
+		A load balancer is a load-balancing service for Amazon Web Services (AWS) deployments. ELB automatically 
+		distributes incoming application traffic and scales resources to meet traffic demands. So when it gets its user's
+		request, it then routes its requests to their targets according to rules setup, usually forwarding them
+		to a specific target group (clusters). \\
+
+		One other aspect of the load balancer is that the user can configure health checks, which monitors the health of the 
+		compute resources, so that the load balancer sends requests only to the healthy ones. As such, if a route/instance becomes
+		unhealthy, it will stop its traffic until it becomes healthy again. In our case, our load balancer will be of the type 
+		application. \\
+
+		With the type being application, our load balancer will route the traffic to two distinct routes, being cluster1 and cluster2.
+		\bigskip
+
+	\subsection{Flask}
+		\paragraph{} Flask is a web framework, it’s a Python module that lets you develop web applications easily. It has a small 
+		and easy-to-extend core: it’s a microframework that doesn’t include an ORM (Object Relational Manager) or such features. It 
+		offers a high compatibility with the most recent technologies, high scalability for simple applications and its database 
+		integration is simple. \\
+
+		All our instances will have Flask server installed and running in them listening on port 80 which have only one task of replying
+		with a message containing the instance ID they are currently on. Since we will have to make numerous calls, the Flask server 
+		will be called multiple times to do the proper benchmark expected to determine the quality of the different type of instances.
+		\bigskip
+
+	\subsection{Benchmark method}
+		\paragraph{} Deez nuts
+		\bigskip
+
+
+\section{Benchmark Analysis} \label{sec:benchmark}
+	\paragraph{} deez nuts
+
+\section{How to run the code} \label{sec:runcode}
+	\paragraph{} To run the main.py correctly, you should already have a keyPairName and securityGroup created in your AWS. After that 
+	change the variables to the corresponding value that you have in your AWS. Don't forget to also change the value of aws_access_key_id,
+	secret_access_key and session_token too! Right after this all you have to do is run the main.py. 
 
 \end{document}
