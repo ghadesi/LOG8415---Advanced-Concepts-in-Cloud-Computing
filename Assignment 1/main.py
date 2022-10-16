@@ -8,11 +8,9 @@ def main():
     
     #initialise the attributs and clients that will be used
     #The follow 3 can change based on who wants to run (the access token is under me: Aleks)
-    aws_access_key_id = 'ASIAQJSMAGZDYUYHJGVO'
-    secret_access_key = 'IPHMQaRivxClUMXsoPS3X3/ZEsG5t91m8DNavPU7'
-    session_token = 'FwoGZXIvYXdzEML//////////wEaDCIQ/10Lk/+sS0mlKyLEAW+O9tsOSwNlOBgTGJxBCDmVR+h9UiIx4p2/Zo76EOH7dIgXrQ5XdQjbwWRFF1r/VQaYQ3i57ZRuLZ6y9fpJfOVFMA7JijyrSDwV9BHEAzmFIJFXe+4RBDey8cQglb1rJgTEjBmBAbYvvS7xTcvVCe9I2e1/rHG8VpIrnx9ETLw9uDkSXtOpcDtPbpiLYj2js7i3lgRGL6mGucUnDRbPgJRxNjlkKzBDm9EL2Aw371p0Qb9kl/Bp42HqK3YkZ3+ipMG90e8ow8KWmgYyLYhHM6uEfdQ1Ha+LIRvTUGIufr4NYRsRSbV4MjDL25DFjYBS43pCuAku8cX20w=='
-    
-    
+    aws_access_key_id = 'ASIAS3YQLWWP6WSPK35O'
+    secret_access_key = 'mg/8Su8B5J6bAOmagI5C3dIeUI9orexrCM66fWaY'
+    session_token = 'FwoGZXIvYXdzEBAaDIh5/j9VYkdNmMNZdyLDAWpkomW47/5X/KD+gP+yZ2VtqNofbStZJOU6u52cY41qQ6JryTEWk954V+nP85jTi1HucgCH53BNlGZky4jVyPHAEWXlzr7k6YsW39wfQV3XUtDta4Km0XNNM3/mk1Qaheg0sNSWrEXQ+bs9wbhWM/9qYsZ83prUZ+wLL22gbnKJjJIAZ4ShHZVD6JahCq8de3JLiTts61Dm8ttg0WyIU5YlYNbi/a/X+wyknweFbTtGG9t7upBFbOpcw9/FB/6AN5LcWijjwKeaBjItjMhW684mdfjAiG+Zr9li237hOwqrhm6ZccJrimDqfL/7p0LqTvFj9YkmX9QI'
     #Keypair for access and security group that needs to be assigned when instance is made (currently under me: Aleks)
     keyPairName = 'LOG8415E'
     securityGroup = 'LOG8415E security group'
@@ -125,6 +123,6 @@ def destructor(ec2_client, elb_client, m4Large_cluster_ids, t2Large_cluster_ids,
             destroy = True
         else: 
             continue 
-     
+
 main()
 
