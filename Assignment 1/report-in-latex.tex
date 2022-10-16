@@ -119,7 +119,10 @@
 		\bigskip
 
 	\subsection{Benchmark method}
-		\paragraph{} Deez nuts
+		\paragraph{} For the benchmark method, when we build our load balancer, we keep in a variable its DNS to be able to do the GET requests.
+		These requests will be done in 2 different scenarios. The first one will be to GET 1000 requests from the ELB. The second one will be to 
+		GET 500 requests, sleep 1 minute and then GET 1000 requests. These 2 scenarios will be done via 2 threads, so 1 thread per scenario. For 
+		the clusters, the cluster1 will use both threads to be able to do both scenarios, as will the cluster2.
 		\bigskip
 
 
@@ -129,6 +132,6 @@
 \section{How to run the code} \label{sec:runcode}
 	\paragraph{} To run the main.py correctly, you should already have a keyPairName and securityGroup created in your AWS. After that 
 	change the variables to the corresponding value that you have in your AWS. Don't forget to also change the value of aws_access_key_id,
-	secret_access_key and session_token too! Right after this all you have to do is run the main.py. 
+	secret_access_key and session_token too! Right after this all you have to do is run the main.py.
 
 \end{document}
