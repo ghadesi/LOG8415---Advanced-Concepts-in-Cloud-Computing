@@ -124,14 +124,30 @@
 		GET 500 requests, sleep 1 minute and then GET 1000 requests. These 2 scenarios will be done via 2 threads, so 1 thread per scenario. For 
 		the clusters, the cluster1 will use both threads to be able to do both scenarios, as will the cluster2.
 		\bigskip
-
+		\pagebreak
 
 \section{Benchmark Analysis} \label{sec:benchmark}
 	\paragraph{} deez nuts
 
+	\pagebreak
+
+	
 \section{How to run the code} \label{sec:runcode}
 	\paragraph{} To run the main.py correctly, you should already have a keyPairName and securityGroup created in your AWS. After that 
-	change the variables to the corresponding value that you have in your AWS. Don't forget to also change the value of aws_access_key_id,
-	secret_access_key and session_token too! Right after this all you have to do is run the main.py.
+	change the variables to the corresponding value that you have in your AWS. Don't forget to also change the value
+	of awsAccessKeyId, secretAccessKey and sessionToken too! Right after this, all you have to do is run the main.py.
+	\bigskip
+
+
+\section{References} \label{sec:references}
+	
+	\begin{thebibliography} {}
+		\bibitem{1} S. A. Abtahizadeh, \emph{LOG8415: Lab 1 Selecting VM instances in the Cloud through benchmarking}, LOG8415: Advanced Concepts of Cloud Computing, 2019.
+		\bibitem{2} Amazon Web Services. (2019) Amazon EC2. \url{https://aws.amazon.com/ec2/}
+		\bibitem{3} Amazon Web Services. (2019) Amazon EC2 Instance Types. \url{https://aws.amazon.com/ec2/instance-types/}
+		\bibitem{4} Dyouri,A. (2020). How To Make a Web Application Using Flask in Python 3. Digital Ocean.  \url{https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3}
+		\bibitem{5} Amazon. (n.d). CloudWatch metrics for your Application Load Balancer. AWS. \url{https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-cloudwatch-metrics.html}
+		\bibitem{6} Amazon. (n.d). CloudWatch. AWS boto3. \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/cloudwatch.html}
+	\end{thebibliography}
 
 \end{document}
