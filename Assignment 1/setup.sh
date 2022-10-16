@@ -1,20 +1,21 @@
 #!/bin/bash
 # Install necessary files and run Flask in the back ground 
 
-sudo apt update
-mkdir flask_application && cd flask_application
-sudo apt install python3-pip python3-flask -y
+sudo apt-get update &&
+sudo pip3 install flask &&
+sudo apt-get -y install python3-pip &&
+mkdir flask_application && 
+cd flask_application &&
 
-INSTANCE_NAME='Amin'
+instance_id=$(ec2metadata --instance-id) &&
 
 echo "from flask import Flask
 app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    return 'VM name: $INSTANCE_NAME'
+    return \"Instance "$instance_id" is responding now! \"
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80, debug=True)" > my_app.py
-
-nohup sudo python3 my_app.py &
+    app.run(host='0.0.0.0', port=80, debug=True)" | tee app.py &&
+sudo python3 app.py
