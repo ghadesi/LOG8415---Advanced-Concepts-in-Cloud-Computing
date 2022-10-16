@@ -127,7 +127,22 @@
 		\pagebreak
 
 \section{Benchmark Analysis} \label{sec:benchmark}
-	\paragraph{} deez nuts
+		\paragraph{} For  this part First, we have to run the benchmark and then capture our desired metric from CloudWatch. So we describe them 	here.
+        \subsection{Cloudwatch}
+        Cloudwatch actually sends logs for services that you are consuming using logs streams and uses its dashboards to create reports on the 	performance of your service. it can also help you analyze the data point to understand where your application could actually break so as rightly mention here CW collects and monitors operational data in the forms of logs metrics and events and visualizes it using automated dashboards  so you can get a unified view of your AWS resources application services that run in AWS.
+        \subsection{Metric}
+        Imagine you invest hundred dollars and you get 105 dollars. You have a profit of 5 dollars.
+        When it comes to AWS if you have deployed service on t2.micro and the CPU reaches above 95 percent and you then try and make some changes and shoot down to 75 percent there will a considerable amount of boos in the performance that's called the performance metric. The way you measure and take a quantitative approach one a data point over a given period of time gives you a form of metrics based on which you can analyze the way your services are performing. So AWS cloud watch is comprised of four pillars \ref{fig:cw}.
+
+        \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{cloudwatch.png}
+            \caption\small{Image Retrieved from: https://aws.amazon.com/cloudwatch/}
+            \label{fig:cw}
+        \end{figure}
+            
+
+
 
 	\pagebreak
 
