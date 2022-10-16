@@ -1,5 +1,6 @@
 def testUserdata_create_m4large_cluster(client, keyPair, securityGroup):
     # I‌ create this function just for creating one instance and then check why user data not working
+    # this a function for testing the user_data and it is temporary
     print('create one instance of m4.large...')
     lowercase_a = 97
     ids = []
@@ -21,7 +22,10 @@ def testUserdata_create_m4large_cluster(client, keyPair, securityGroup):
     echo
     'test' > / home / ec2 - user / test.txt
     '''
-
+    # I‌ found that the main reason here for not running the flask in userdata is that the file does not save for each instance. I‌ mean when we create each instance and connect to
+    # each instance I get that there is file named myap.py. I don't don't knwo why but I‌ found a solution to run our simple server file without create a new file.
+    
+    sudo echo -e "from flask import Flask\napp = Flask(__name__)\n@app.route('/')\ndef hello():return 'VM name:'\nif __name__ == '__main__':app.run(host='0.0.0.0', port=80, debug=False)"| python3 
     instance = 0
     response = client.run_instances(
             BlockDeviceMappings=[
@@ -61,6 +65,12 @@ def testUserdata_create_m4large_cluster(client, keyPair, securityGroup):
     ids.append(response["Instances"][0]["InstanceId"])
     return ids
 
+  
+    # Here we create 4 instances for target group2. For creating a new instance we use "run_instances" function. There are some parameters we can fix there.
+    # This example sets the EBS-backed root device (/dev/sdf) size to 8 GiB.
+    # InstanceType define the instance type.
+    # in Placement we set the AvailabilityZone. As mention in the asignment we need to have diffrent AvailabilityZone for each instanec in target group.
+  
 def create_m4large_cluster(client, keyPair, securityGroup):
     print('Creating 5 instances of m4.large...')
     lowercase_a = 97
@@ -127,11 +137,19 @@ def create_m4large_cluster(client, keyPair, securityGroup):
     return ids
 
 
+    # Here we create 4 instances for target group2. For creating a new instance we use "run_instances" function. There are some parameters we can fix there.
+    # This example sets the EBS-backed root device (/dev/sdf) size to 8 GiB.
+    # InstanceType define the instance type.
+    # in Placement we set the AvailabilityZone. As mention in the asignment we need to have diffrent AvailabilityZone for each instanec in target group.
+  
 def create_t2large_cluster(client, keyPair, securityGroup):
     print('Creating 4 instances of t2.large...')
     lowercase_a = 97
     ids = []
     
+    #This is for user_data. when a instance is created we can run a script to run after the instance is created. it can be anything from updating the operating
+    # system to install flask or apache server
+    # in this script we try to install a simple flask server to show the instance id from port 80
     USERDATA_SCRIPT = '''#!/bin/bash \n mkdir Aleks \n
     # Install necessary files and run Flask in the back ground 
 
@@ -151,7 +169,10 @@ def create_t2large_cluster(client, keyPair, securityGroup):
 
     nohup sudo python3 my_app.py &
     '''
-
+    # Here we create 4 instances for target group2. For creating a new instance we use "run_instances" function. There are some parameters we can fix there.
+    # This example sets the EBS-backed root device (/dev/sdf) size to 8 GiB.
+    # InstanceType define the instance type.
+    # in Placement we set the AvailabilityZone. As mention in the asignment we need to have diffrent AvailabilityZone for each instanec in target group.
     for instance in range(4):
         response = client.run_instances(
             BlockDeviceMappings=[
@@ -192,7 +213,7 @@ def create_t2large_cluster(client, keyPair, securityGroup):
         
     return ids
 
-
+# This function is defined to terminate the instances by function "terminate_instances".
 def terminate_instance_cluster(client, instanceIds):
     print('terminating cluster of instances:')
     print(instanceIds)
