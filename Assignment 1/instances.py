@@ -11,6 +11,16 @@ def testUserdata_create_m4large_cluster(client, keyPair, securityGroup):
     apache2 -version
     sudo systemctl status apache2
     sudo echo “Hello World from $(hostname -f)” > /var/www/html/index.html'''
+    
+    #for main challenge here is that user data here is not wokring. I just create some variable and check the result for creating new instance to find the answer
+    u_data = '''#!/bin/bash
+        echo "Hello World" >> /tmp/data.txt'''
+
+    u_data = '''
+    # !/bin/bash
+    echo
+    'test' > / home / ec2 - user / test.txt
+    '''
 
     instance = 0
     response = client.run_instances(
