@@ -1,21 +1,28 @@
 #!/bin/bash
-# Install necessary files and run Flask in the back ground 
 
-sudo apt-get update &&
-sudo pip3 install flask &&
-sudo apt-get -y install python3-pip &&
-mkdir flask_application && 
-cd flask_application &&
+apt update;
+apt -y install python3-pip;
+pip3 install flask;
 
-instance_id=$(ec2metadata --instance-id) &&
+instance_id=$(ec2metadata --instance-id);
 
-echo "from flask import Flask
+python3 -c "
+from flask import Flask
+
 app = Flask(__name__)
 
 @app.route('/')
-def hello():
-    return \"Instance "$instance_id" is responding now! \"
+def default_route():
+    return 'Instance "$instance_id" is responding now! '
+
+@app.route('/cluster1')
+def cluster1_route():
+    return 'Instance "$instance_id" is responding now from target group cluster1 ! '
+
+@app.route('/cluster2')
+def cluster2_route():
+    return 'Instance "$instance_id" is responding now from target group cluster2 ! '
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80, debug=True)" | tee app.py &&
-sudo python3 app.py
+    app.run(host='0.0.0.0', port=80)
+";
