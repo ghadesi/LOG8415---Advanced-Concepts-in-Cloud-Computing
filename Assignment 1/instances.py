@@ -66,7 +66,7 @@ def testUserdata_create_m4large_cluster(client, keyPair, securityGroup):
     return ids
 
   
-    # Here we create 4 instances for target group2. For creating a new instance we use "run_instances" function. There are some parameters we can fix there.
+    # Here we create 5 instances for target group2. For creating a new instance we use "run_instances" function. There are some parameters we can fix there.
     # This example sets the EBS-backed root device (/dev/sdf) size to 8 GiB.
     # InstanceType define the instance type.
     # in Placement we set the AvailabilityZone. As mention in the asignment we need to have diffrent AvailabilityZone for each instanec in target group.
