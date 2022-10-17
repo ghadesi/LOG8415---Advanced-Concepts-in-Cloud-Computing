@@ -27,11 +27,11 @@
 	\HRule\\[1.5cm]
 	{\large\textit{Authors}}\\
 	Anis \textsc{Zouatene} (1963304)\\
-	Aleksandar \textsc{Stijelja} ( )\\
-	Amin \textsc{} ()\\
-    Reza \textsc{} ()\\
+	Aleksandar \textsc{Stijelja} (1959772)\\
+	Amin Ghadesi\textsc{} (2121658)\\
+    Reza Rouhghalandari \textsc{} (2153395)\\
 	\vfill\vfill\vfill {\large\today} \vfill\vfill
-	\includegraphics{poly_logo.png}\\[1cm]
+	\includegraphics{poly-logo.png}\\[1cm]
 	\vfill
 \end{titlepage}
 
@@ -116,7 +116,7 @@
 
 		All our instances will have Flask server installed and running in them listening on port 80 which have only one task of replying
 		with a message containing the instance ID they are currently on. Since we will have to make numerous calls, the Flask server 
-		will be called multiple times to do the proper benchmark expected to determine the quality of the different type of instances.
+		will be called multiple times to do the proper benchmark expected to determine the quality of the different type of instances. In addition, it will have 3 path routes to listen to. First being the default path "/" and the others being "/cluster1" and "/cluster2", since our instances will be divided into 2 clusters. Each path routes will return a slightly different message, but all containing the instance ID.
 		\bigskip
 
 	\subsection{Benchmark method}
