@@ -220,7 +220,7 @@ def destructor(ec2_client, elb_client, m4Large_cluster_ids, t2Large_cluster_ids,
     terminate_instance_cluster(ec2_client, m4Large_cluster_ids)
     terminate_instance_cluster(ec2_client, t2Large_cluster_ids)
 
-    print("Giving 3 min to make sure all instances are terminated so we can delete security group without depency")
+    print("Giving 3 min to make sure all instances are terminated so we can delete security group without dependency")
     time.sleep(180) 
     print("Deleting keypair and security group")
     delete_security_group(ec2_client, security_group)
