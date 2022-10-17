@@ -139,7 +139,7 @@
         Cloudwatch actually sends logs for services that you are consuming using logs streams and uses its dashboards to create reports on the performance of your service. it can also help you analyze the data point to understand where your application could actually break so as rightly mention here CW collects and monitors operational data in the forms of logs metrics and events and visualizes it using automated dashboards  so you can get a unified view of your AWS resources application services that run in AWS.
         \subsection{Metric}
         Imagine you invest hundred dollars and you get 105 dollars. You have a profit of 5 dollars.
-        When it comes to AWS if you have deployed service on t2.micro and the CPU reaches above 95 percent and you then try and make some changes and shoot down to 75 percent there will a considerable amount of boos in the performance that's called the performance metric. The way you measure and take a quantitative approach one a data point over a given period of time gives you a form of metrics based on which you can analyze the way your services are performing. So AWS cloud watch is comprised of four pillars \ref{fig:cw}.
+        When it comes to AWS if you have deployed service on t2.micro and the CPU reaches above 95 percent and you then try and make some changes and shoot down to 75 percent there will a considerable amount of boost in the performance that's called the performance metric. The way you measure and take a quantitative approach one a data point over a given period of time gives you a form of metrics based on which you can analyze the way your services are performing. AWS cloud watch is comprised of four pillars \ref{fig:cw}.
 
         \begin{figure}[htpb]
         \captionsetup{font=footnotesize,labelfont=footnotesize}
@@ -192,12 +192,20 @@
          For this part based on the assignment, we have two functions for each scenario. In scenario1 we send 1000 get requests and in scenario2 we send 500 get requests and then wait for 60 sec and then send 1000 requests again. We repeat this for each cluster1 and then cluster2. Now we try to analyze the whole system. 
 
          \subsection{Analysis}
-            We try to find the most relative metric and analyze the system in this part. We divide this part into 3 parts. A first metric is applied in all instances. the second part for that metrics is applied on clusters. and this part we can compare our two clusters and then the last part the parameters related to load balancer.
+            We try to find the most relative metric and analyze the system in this part. We divide this part into 3 parts. A first metric is applied in all instances. the second part for that metrics is applied on clusters. and this part we can compare our two clusters and then the last part the parameters related to load balancer.\\
+            
+            Metrics: 
+            \begin{itemize}
+                \item All instances
+                \item Two Clusters
+                \item Load Balancer
+            \end{itemize}
 
         
 
         \subsubsection{All instances}
-        In this section, we discuss significant metrics of all instances. We talk about CPU utilization during the benchmark and network-in and network-out. 
+        In this section, we discuss significant metrics from all instances. We mean the metrics collect data directly from instances and not from load balancer or the whole target group.
+        We talk about CPU utilization during the benchmark and network-in and network-out. 
          Based on the Website\footnote{https://jayendrapatil.com/aws-ec2-instance-types/} "T2 instances are general purpose and designed to provide moderate baseline performance and the capability to burst to significantly higher performance as required". You can find an overview of two instance types used in this homework, M4 and T2 in Table\ref{tbl:m4t2}. The main difference between a t2 instance and an m4 instance is the burstable nature of the t2 instance.\\
         
         Based on AWS \textbf{CPUUtilization} references "This metric identifies the processing power required to run an application on a selected instance." So it reveals a good overview of allocated EC2 compute units for all instances from clusters 1 and 2. In Figure\ref{fig:cpu1} and \ref{fig:cpu2} You can find it for all of them. These are the same figure but Figure\ref{fig:cpu2} is zoomed in to have a better look for analysis. \\
@@ -270,7 +278,7 @@
 
         
         \subsubsection{Clusters}
-            In this section, we compare the significant metrics of the two clusters. In Figure\ref{fig:targerresponsetimec12} you can find the average response time of the target group1 and group 2 in one graph which means the time after the request leaves the load balancer until a response from the target is received.\\
+            In this section, we compare the significant metrics from two clusters. In Figure\ref{fig:targerresponsetimec12} you can find the average response time of the target group1 and group 2 in one graph which means the time after the request leaves the load balancer until a response from the target is received.\\
             They almost have the same response time. cluster 2 has a little bit higher time but it can be ignored. So we can claim here type of instance is not effective at least in target response time.\\
           
                 \begin{figure}[htpb]
