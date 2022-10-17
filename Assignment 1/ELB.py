@@ -1,3 +1,5 @@
+
+# create load balancer
 def create_load_balancer(client, subnets, sg_id):
     elb = client.create_load_balancer(
         Name='ELB',
@@ -8,7 +10,7 @@ def create_load_balancer(client, subnets, sg_id):
         )
     return elb
 
-
+# create both target groups
 def create_target_groups(client, vpc_id):
     tg_cluster1 = client.create_target_group(
         Name='cluster1',
@@ -36,7 +38,7 @@ def create_target_groups(client, vpc_id):
     
     return tg_cluster1, tg_cluster2
 
-
+# create listener for ELB
 def create_elb_listener(client, target_group, load_balancer):
     listener = client.create_listener(
         LoadBalancerArn = load_balancer.get('LoadBalancers')[0].get('LoadBalancerArn'),
@@ -53,7 +55,7 @@ def create_elb_listener(client, target_group, load_balancer):
     print("Created elb listener")
     return listener
 
-
+# create rules for listener
 def create_rules(client, listener, tg_cluster1, tg_cluster2):
     print("Creating rules for listener...")
     
@@ -95,7 +97,7 @@ def create_rules(client, listener, tg_cluster1, tg_cluster2):
         ],
     )
     
-    
+# register instances to respective target groups
 def register_instances_to_target_groups(client, m4instancesId, t2instancesId, tg_cluster1, tg_cluster2):
     print("registering 5 m4.large instances to target group 1 and 4 t2.large instances to target group 2")
     
@@ -117,6 +119,7 @@ def register_instances_to_target_groups(client, m4instancesId, t2instancesId, tg
         Targets=t2Targets
     )
     
+# deregister instances to respective target groups in teardown
 def deregister_instances_from_target_groups(client, m4instancesId, t2instancesId, tg_cluster1, tg_cluster2):
     print("Deregistering instances from target group")
     

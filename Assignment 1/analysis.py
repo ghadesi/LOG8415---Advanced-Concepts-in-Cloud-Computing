@@ -1,7 +1,15 @@
 from datetime import datetime, timedelta
 
 def analysis(cw_client, c1_ids, c2_ids, tgc1, tgc2):
-
+    """
+    Function that does the analysis
+    
+    :param cw_client: client of Cloudwatch
+    :param c1_ids: IDs of m4.large instances
+    :param c2_ids: IDs of t2.large instances
+    :param tgc1: target group for cluster1
+    :param tgc2: target group for cluster2
+    """
     results = open("results.txt", "w")
 
     results.write("ANALYSIS \n")
