@@ -11,6 +11,7 @@
 \usepackage{enumitem}
 \usepackage{subfig}
 \usepackage{placeins}
+\usepackage{tabularray}
 
 
 \begin{document}
@@ -26,11 +27,11 @@
 	\HRule\\[1.5cm]
 	{\large\textit{Authors}}\\
 	Anis \textsc{Zouatene} (1963304)\\
-	Aleksandar \textsc{Stijelja} (1959772)\\
-	Reza \textsc{Rouhghalandari} (2153395)\\
-    Amin \textsc{Ghadesi} (2121658)\\
+	Aleksandar \textsc{Stijelja} ( )\\
+	Amin \textsc{} ()\\
+    Reza \textsc{} ()\\
 	\vfill\vfill\vfill {\large\today} \vfill\vfill
-	\includegraphics{images/poly-logo.png}\\[1cm]
+	\includegraphics{poly_logo.png}\\[1cm]
 	\vfill
 \end{titlepage}
 
@@ -127,28 +128,69 @@
 		\pagebreak
 
 \section{Benchmark Analysis} \label{sec:benchmark}
-		\paragraph{} For  this part First, we have to run the benchmark and then capture our desired metric from CloudWatch. So we describe them here.
+	\paragraph{} For  this part First, we have to run the benchmark and then capture our desired metric from CloudWatch. So we describe them here.
         \subsection{Cloudwatch}
-        Cloudwatch actually sends logs for services that you are consuming using logs streams and uses its dashboards to create reports on the 	
-		performance of your service. it can also help you analyze the data point to understand where your application could actually break so 
-		as rightly mention here CW collects and monitors operational data in the forms of logs metrics and events and visualizes it using 
-		automated dashboards  so you can get a unified view of your AWS resources application services that run in AWS.
+        Cloudwatch actually sends logs for services that you are consuming using logs streams and uses its dashboards to create reports on the performance of your service. it can also help you analyze the data point to understand where your application could actually break so as rightly mention here CW collects and monitors operational data in the forms of logs metrics and events and visualizes it using automated dashboards  so you can get a unified view of your AWS resources application services that run in AWS.
         \subsection{Metric}
         Imagine you invest hundred dollars and you get 105 dollars. You have a profit of 5 dollars.
-        When it comes to AWS if you have deployed service on t2.micro and the CPU reaches above 95 percent 
-		and you then try and make some changes and shoot down to 75 percent there will a considerable amount 
-		of boos in the performance that's called the performance metric. The way you measure and take a 
-		quantitative approach one a data point over a given period of time gives you a form of metrics based 
-		on which you can analyze the way your services are performing. So AWS cloud watch is comprised of four 
-		pillars \ref{fig:cw}.
+        When it comes to AWS if you have deployed service on t2.micro and the CPU reaches above 95 percent and you then try and make some changes and shoot down to 75 percent there will a considerable amount of boos in the performance that's called the performance metric. The way you measure and take a quantitative approach one a data point over a given period of time gives you a form of metrics based on which you can analyze the way your services are performing. So AWS cloud watch is comprised of four pillars \ref{fig:cw}.
 
         \begin{figure}[htpb]
         \centering
-        \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{images/cloudwatch.png}
+        \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{cloudwatch.png}
             \caption\small{Image Retrieved from: https://aws.amazon.com/cloudwatch/}
             \label{fig:cw}
         \end{figure}
-            
+
+        \subsection{Instances}
+        After we run the main.py 9 instances are created 5 m4.large instances and 4 t2.large instances. you can see the instances attributes in \ref{instances}. 
+
+        \begin{table}[]
+            \centering
+            \resizebox{10cm}{!}{%
+            \begin{tabular}{||c|c|c||} \hline\hline
+               Name & Instance ID & Availability zone\\\hline
+               cluster1a & i-00a5a231533689bf8 &us-east-1a	\\\hline
+               cluster1b & i-09b6d8a2009947e0d & us-east-1b	\\\hline
+                cluster1c & i-0bb3d69257cbc0b57 & us-east-1c	\\\hline
+               cluster1d & i-0091751178d8554cf &us-east-1d	\\\hline
+               cluster1e & i-05c55060084a6e02a & us-east-1e \\\hline
+               cluster2a& i-0892b3596e4f47d08 &us-east-2a\\\hline
+               cluster2b &i-0527ab13e0e76c52c  & us-east-2b\\\hline
+               cluster2c & i-0b6bd1d292770acbc & us-east-2c\\ \hline
+               cluster2d & i-0fea53032ff3332cb & us-east-2d\\\hline
+               \hline
+                
+            \end{tabular}
+             }
+        
+            \label{instances}
+        \end{table}
+
+        After creating instances, the load_balancer is created and then we create a target group for clusters 1 and 2 and next create listeners and rules for listeners on cluster1 and cluster2. you can find them in \ref{table:ett}. Now everything looks good. Instances are created, the target group is created, and all instances now belong to the target group1 or 2. Also, load balancer is configured and listeners and rules are created. so let's go to the final part and run the benchmark and analysis of the system.
+
+        \subsection{Benchmark}
+    
+        
+
+
+      
+        \begin{table} 
+        
+        \begin{tabular}{p{3 cm} | l} 
+         \begin{tabular}{l} Load Balancer \end{tabular} & \begin{tabular}{l} \includegraphics[scale = 0.2]{elb.png} \end{tabular} \\ 
+        \\\hline\\ 
+       \begin{tabular}{l} Target group 1 \end{tabular}  &  \begin{tabular}{l}\includegraphics[scale = 0.2]{target group1.png} \end{tabular}  \\ 
+           \\\hline\\ 
+         \begin{tabular}{l} Target group 2 \end{tabular}& \begin{tabular}{l}\includegraphics[scale = 0.2]{target group2.png} \end{tabular}\\ 
+         
+        \end{tabular} 
+        \caption{ELB, target group1, target group 2 specification} 
+        \label{table:ett} 
+        \end{table} 
+                            
+        
+
 
 
 
