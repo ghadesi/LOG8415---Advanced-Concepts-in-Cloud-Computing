@@ -150,15 +150,15 @@
             \resizebox{10cm}{!}{%
             \begin{tabular}{||c|c|c||} \hline\hline
                Name & Instance ID & Availability zone\\\hline
-               cluster1a & i-00a5a231533689bf8 &us-east-1a	\\\hline
-               cluster1b & i-09b6d8a2009947e0d & us-east-1b	\\\hline
-                cluster1c & i-0bb3d69257cbc0b57 & us-east-1c	\\\hline
-               cluster1d & i-0091751178d8554cf &us-east-1d	\\\hline
-               cluster1e & i-05c55060084a6e02a & us-east-1e \\\hline
-               cluster2a& i-0892b3596e4f47d08 &us-east-2a\\\hline
-               cluster2b &i-0527ab13e0e76c52c  & us-east-2b\\\hline
-               cluster2c & i-0b6bd1d292770acbc & us-east-2c\\ \hline
-               cluster2d & i-0fea53032ff3332cb & us-east-2d\\\hline
+               cluster1a & i-05d4f4ea233b89f2d &us-east-1a	\\\hline
+               cluster1b & i-0e13ad0ed8951d3dc & us-east-1b	\\\hline
+                cluster1c & i-02ceee3bd54a8f70e & us-east-1c	\\\hline
+               cluster1d & i-0e5a28ccbd00342ba &us-east-1d	\\\hline
+               cluster1e & i-017eab7711a692d4e & us-east-1e \\\hline
+               cluster2a& i-0b5230f77a4813eab &us-east-2a\\\hline
+               cluster2b & i-0527ab13e0e76c52c  & us-east-2b\\\hline
+               cluster2c & 	i-04f73d8bf2d7136aa & us-east-2c\\ \hline
+               cluster2d & i-079625ab28844524c& us-east-2d\\\hline
                \hline
                 
             \end{tabular}
@@ -170,8 +170,78 @@
         After creating instances, the load_balancer is created and then we create a target group for clusters 1 and 2 and next create listeners and rules for listeners on cluster1 and cluster2. you can find them in \ref{table:ett}. Now everything looks good. Instances are created, the target group is created, and all instances now belong to the target group1 or 2. Also, load balancer is configured and listeners and rules are created. so let's go to the final part and run the benchmark and analysis of the system.
 
         \subsection{Benchmark}
-    
+         For this part based on the assignment, we have two functions for each scenario. In scenario1 we send 1000 get requests and in scenario2 we send 500 get requests and then wait for 60 sec and then send 1000 requests again. We repeat this for each cluster1 and then cluster2. Now we try to analyze the whole system. 
+
+         \subsection{Analysis}
+            We try to find the most relative metric and analyze the system in this part. We divide this part into 3 parts. A first metric is applied in all instances. the second part for that metrics is applied on clusters. and this part we can compare our two clusters and then the last part the parameters related to load balancer.
+
         
+
+        \subsubsection{All instances}
+
+          \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{cpu utilization all instances 1.png}
+            \caption*\small{CPU utilization of all instances V1}
+            \label{fig:cpu1}
+        \end{figure}
+
+         \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{cpu utilization2 all 2.png}
+            \caption*\small{CPU utilization of all instances V2}
+            \label{fig:cpu2}
+        \end{figure}
+
+         \begin{figure}[htpb]
+         
+        \centering
+        \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{networkpacket in all instances.png}
+            \caption*\small{Network packets in of all instances}
+            \label{fig:netin}
+        \end{figure}
+
+    
+        \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{network packets out all instances.png}
+            \caption*\small{Network packets out of all instances}
+            \label{fig:netout}
+        \end{figure}
+
+
+        
+        \subsubsection{Clusters}
+                \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{target response time cluster1 cluster2.png.png}
+                    \caption*\small{Target response time of Cluster1 and Cluster2}
+                    \label{fig:cpu1}
+                \end{figure}
+                \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{}
+                    \caption*\small{of Cluster1 and Cluster2}
+                    \label{fig:cpu1}
+                \end{figure}
+                \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{}
+                    \caption*\small{of Cluster1 and Cluster2}
+                    \label{fig:cpu1}
+                \end{figure}
+                \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{}
+                    \caption*\small{of Cluster1 and Cluster2}
+                    \label{fig:cpu1}
+                \end{figure}
+                \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{}
+                    \caption*\small{of Cluster1 and Cluster2}
+                    \label{fig:cpu1}
+                \end{figure}
+
+
+        
+        \subsubsection{Load Balancer}
+
+    
+
+
+
+         I‌ wondered what's the difference between the metrics "NetworkIn"  and "NetworkPacketsIn" and I‌found the answer:\\
+         \textbf{NetworkIn}:‌The number of bytes received by the instance on all network interfaces. This metric identifies the volume of incoming network traffic to a single instance.\\
+        \textbf{NetworkPacketsIn}: The number of packets received by the instance on all network interfaces. This metric identifies the volume of incoming traffic in terms of the number of packets on a single instance.
 
 
       
