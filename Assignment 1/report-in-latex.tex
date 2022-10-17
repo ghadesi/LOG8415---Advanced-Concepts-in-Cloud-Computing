@@ -117,6 +117,12 @@
 		All our instances will have Flask server installed and running in them listening on port 80 which have only one task of replying
 		with a message containing the instance ID they are currently on. Since we will have to make numerous calls, the Flask server 
 		will be called multiple times to do the proper benchmark expected to determine the quality of the different type of instances. In addition, it will have 3 path routes to listen to. First being the default path "/" and the others being "/cluster1" and "/cluster2", since our instances will be divided into 2 clusters. Each path routes will return a slightly different message, but all containing the instance ID.
+		\begin{figure}[htpb]
+        \centering
+        \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{flask_deployement.png}
+            \caption{Default Flask message from an instance}
+            \label{fig:cw}
+        \end{figure}
 		\bigskip
 
 	\subsection{Benchmark method}
@@ -136,6 +142,7 @@
         When it comes to AWS if you have deployed service on t2.micro and the CPU reaches above 95 percent and you then try and make some changes and shoot down to 75 percent there will a considerable amount of boos in the performance that's called the performance metric. The way you measure and take a quantitative approach one a data point over a given period of time gives you a form of metrics based on which you can analyze the way your services are performing. So AWS cloud watch is comprised of four pillars \ref{fig:cw}.
 
         \begin{figure}[htpb]
+        \captionsetup{font=footnotesize,labelfont=footnotesize}
         \centering
         \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{cloudwatch.png}
             \caption{Image Retrieved from: https://aws.amazon.com/cloudwatch/}
@@ -167,14 +174,14 @@
         \end{table}
 
         After creating instances, the load balancer is created and then we create a target group for clusters 1 and 2 and next create listeners and rules for listeners on cluster1 and cluster2. you can find them in Table\ref{table:ett}. Now everything looks good. Instances are created, the target group is created, and all instances now belong to the target group 1 or 2. Also, the load balancer is configured and listeners and rules are created. so let's go to the final part and run the benchmark and analysis of the system. You can find some of the elb and terget1 and target2 Specifications in Table\ref{table:ett}. In target 1 and Target 2, you can find all \textbf{healthy} instances with their IDs, Name and port.
-
          \begin{table}  
-        \begin{tabular}{p{3 cm} | l} 
-         \begin{tabular}{l} Load Balancer \end{tabular} & \begin{tabular}{l} \includegraphics[scale = 0.2]{elb.png} \end{tabular} \\ 
-        \\\hline\\ 
-       \begin{tabular}{l} Target group 1 \end{tabular}  &  \begin{tabular}{l}\includegraphics[scale = 0.2]{target group1.png} \end{tabular}  \\ 
-           \\\hline\\ 
-         \begin{tabular}{l} Target group 2 \end{tabular}& \begin{tabular}{l}\includegraphics[scale = 0.2]{target group2.png} \end{tabular}\\ 
+        \begin{tabular}{|p{3 cm} | p{10cm}|} 
+        \hline \hline
+         \begin{tabular}{l} Load Balancer \end{tabular}    & \begin{tabular}{l} \\ \includegraphics[scale = 0.2]{elb.png} \\ \\\end{tabular}  
+        \hline\\ 
+       \begin{tabular}{l} Target group 1 \end{tabular}  &  \begin{tabular}{l} \\ \includegraphics[scale = 0.2]{target group1.png} \\ \\\end{tabular}   
+           \hline\\ 
+         \begin{tabular}{l} Target group 2 \end{tabular}& \begin{tabular}{l} \\ \includegraphics[scale = 0.2]{target group2.png}  \\ \\\end{tabular} \\ \hline\hline
          
         \end{tabular} 
         \caption{ELB, target group1, target group 2 specification} 
@@ -190,31 +197,72 @@
         
 
         \subsubsection{All instances}
+        In this section, we discuss significant metrics of all instances. We talk about CPU utilization during the benchmark and Network in and out. 
+         Based on the Website\footnote{https://jayendrapatil.com/aws-ec2-instance-types/} "T2 instances are general purpose and designed to provide moderate baseline performance and the capability to burst to significantly higher performance as required". You can find an overview of two instance types used in this homework, M4 and T2 in Table\ref{tbl:m4t2}. The main difference between a t2 instance and an m4 instance is the burstable nature of the t2 instance.\\
+        
+        Based on AWS \textbf{CPUUtilization} references "This metric identifies the processing power required to run an application on a selected instance." So it reveals a good overview of allocated EC2 compute units for all instances from clusters 1 and 2. In Figure\ref{fig:cpu1} and \ref{fig:cpu2} You can find it for all of them. These are the same figure but Figure\ref{fig:cpu2} is zoomed in to have a better look for analysis. \\
+        The blue, orange, green, red, and purple one from cluster 1, and the other are from cluster 2. The highest CPU capacity is used for the gray instance from cluster 2 but the second and third ones (orange green and brown)  are from cluster 1.\\ For a more detailed review  we capture the average CPU capacity of all instances for 15 minutes during the startup and benchmark in Figure \ref{fig:cpu3}. on Average CPU capacity for cluster1 will be $1.3$ and for cluster 2 it will be $1.15$. Clearly, cluster 1 (M4.large instance) is more efficient for what we pay for but Overall both clusters are overloaded for our needs. On Linux-on-demand, they are the almost same price (0.1 dollars per hour for M4 and 0.094 for T2) but for windows-on-demand 0.192 dollars per  hour for M4 and 0.122 per hour for T2.\\
+        In figures\ref{fig:netin} and \ref{fig:netout} "NetworkPacketsIn" and  "NetworkPacketsOut" metric. It is The number of packets received/send by the instance on all network interfaces. This metric is available for basic monitoring only (5-minute periods). In this graph, a maximum number of packets send and received by cluster 2 instances. the light purple, gray light green, and brown all from cluster2.\\
+          I‌ wondered what's the difference between the metrics "NetworkIn"  and "NetworkPacketsIn" and I‌ found the answer:\\
+         \textbf{NetworkIn}:‌The number of bytes received by the instance on all network interfaces. This metric identifies the volume of incoming network traffic to a single instance.\\
+        \textbf{NetworkPacketsIn}: The number of packets received by the instance on all network interfaces. This metric identifies the volume of incoming traffic in terms of the number of packets on a single instance.\\
 
+
+
+\begin{table}[]
+            \centering
+            \resizebox{15cm}{!}{%
+            \begin{tabular}{||c|c|c|c|c|c|c|c|c||} \hline
+              & VPC‌ only & EBS only & SS volume & Placement group & HV‌M only & Enhanced networking & price per hour (Linux-on-demand) & price per hour(Windows-on-demand) \\\hline
+              M4 &  Yes & Yes  &  & Yes & Yes & Yes & 0.1 & 0.192\\\hlineper
+              T2 & Yes &Yes  &  & & Yes & & 0.094 & 0.122\\\hline
+        
+            \end{tabular}
+             }
+        \caption{EC2 M4 and T2 comparison}
+            \label{tbl:m4t2}
+        \end{table}
+        
+
+      
           \begin{figure}[htpb]
         \centering
-        \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{cpu utilization all instances 1.png}
+         
+         \frame{\includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{cpu utilization all instances 1.png}}
             \caption{CPU utilization of all instances V1}
             \label{fig:cpu1}
         \end{figure}
+        
+        
 
          \begin{figure}[htpb]
         \centering
-        \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{cpu utilization2 all 2.png}
+        
+        \frame{\includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{cpu utilization2 all 2.png}}
             \caption{CPU utilization of all instances V2}
             \label{fig:cpu2}
         \end{figure}
 
+
          \begin{figure}[htpb]
         \centering
-        \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{networkpacket in all instances.png}
+         
+         \frame{\includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{cpu all v3.png}}
+            \caption{CPU utilization of all instances V3}
+            \label{fig:cpu3}
+        \end{figure}
+        
+
+         \begin{figure}[htpb]
+        \centering
+        \frame{\includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{networkpacket in all instances.png}}
             \caption{Network packets in of all instances}
             \label{fig:netin}
         \end{figure}
 
     \begin{figure}[htpb]
         \centering
-        \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{network packets out all instances.png}
+        \frame{\includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{network packets out all instances.png}}
             \caption{Network packets out of all instances}
             \label{fig:netout}
         \end{figure}
@@ -222,31 +270,35 @@
 
         
         \subsubsection{Clusters}
-
-            I‌ wondered what's the difference between the metrics "NetworkIn"  and "NetworkPacketsIn" and I‌found the answer:\\
-         \textbf{NetworkIn}:‌The number of bytes received by the instance on all network interfaces. This metric identifies the volume of incoming network traffic to a single instance.\\
-        \textbf{NetworkPacketsIn}: The number of packets received by the instance on all network interfaces. This metric identifies the volume of incoming traffic in terms of the number of packets on a single instance.\\
+            In this section, we compare the significant metrics of the two clusters. In Figure\ref{fig:targerresponsetimec12} you can find the average response time of the target group1 and group 2 in one graph which means the time after the request leaves the load balancer until a response from the target is received.\\
+            They almost have the same response time. cluster 2 has a little bit more time but it can be ignored. So we can claim here type of instance is not effective at least in target response time.\\
+          
                 \begin{figure}[htpb]
                 \centering
-                \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{target response time cluster1 cluster2.png}
+                \frame{\includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{target response time cluster1 cluster2.png}}
                     \caption{Target response time of Cluster1 and Cluster2}
                     \label{fig:targerresponsetimec12}
                 \end{figure}
+
+
+
+
+                
                 \begin{figure}[htpb]
                 \centering
-                \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{Request count per time cluster1 cluster2.png}
-                    \caption{Request count per time of Cluster1 and Cluster2}
+                \frame{\includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{request count cluster1 2.png}}
+                    \caption{Request count of Cluster1 and Cluster2}
                     \label{fig:reqtimecountc12}
                 \end{figure}
                 \begin{figure}[htpb]
                 \centering
-                \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{request count per target.png}
+                \frame{\includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{Request count per target cluster1 cluster2.png}}
                     \caption{Request count per target of Cluster1 and Cluster2}
                     \label{fig:reqtargetcount}
                 \end{figure}
                 \begin{figure}[htpb]
                 \centering
-                \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{HTTPCode_Target_2XX_Count cluster1 2 .png}
+                \frame{\includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{HTTPCode_Target_2XX_Count cluster1 2 .png}}
                     \caption{HTTP code Target count of Cluster1 and Cluster2}
                     \label{fig:httpcountc12}
                 \end{figure}
@@ -257,26 +309,26 @@
         \subsubsection{Load Balancer}
             \begin{figure}[htpb]
                 \centering
-         \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{request count elb.png}
+                \frame{\includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{request count elb.png}}
                     \caption{Request count (load balancer)}
                     \label{fig:requescountelb}
                 \end{figure}
                 \begin{figure}[htpb]
                 \centering
-                \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{processed bytes elb.png}
+                \frame{\includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{processed bytes elb.png}}
                     \caption{Processed bytes(load balancer)}
                     \label{fig:procbyteselb}
                 \end{figure}
 
             \begin{figure}[htpb]
                 \centering
-           \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{target response time elb.png}
+            \frame{\includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{target response time elb.png}}
                     \caption{Target response time (load balancer)}
                     \label{fig:targetresponsetimeelb}
                 \end{figure}
         \begin{figure}[htpb]
                 \centering
-           \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{HTTPCode_ELB_4XX_Count elb.png}
+            \frame{\includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{HTTPCode_ELB_4XX_Count elb.png}}
                     \caption{HTTPCode ELB 4XX Count (load balancer)}
                     \label{fig:httpelb}
                 \end{figure}
@@ -294,12 +346,26 @@
 
 
 \section{How to run the code} \label{sec:runcode}
-	\paragraph{} To run the main.py correctly, you should already have a keyPairName and securityGroup created in your AWS. After that 
-	change the variables to the corresponding value that you have in your AWS. Don't forget to also change the value
-	of awsAccessKeyId, secretAccessKey and sessionToken too! Right after this, all you have to do is run the main.py. It will then
-	create everything you need and install/setup Flask into each instance, alongside the load balancer and clusters. 
+	\paragraph{} To run the program, you need to go configure on your AWS CLI the following attributes:
+	\begin{itemize}
+      \item awsAccessKeyId
+      \item secretAccessKey
+      \item sessionToken
+    \end{itemize}
+    After these attributes have been modified, all you have to do is run the "main.py". It will then
+	create everything you need and install/setup Flask into each instance, alongside the load balancer, the listener and target groups for both cluster. 
+	
+	\bigskip
+	
+	Once all those are setup, it will go ahead and call the benchmark function which for each target group will setup two threads, each accomplishing one of the two scenario, as explained in section 4.4. After that, the analysis function from the "analysis.py" file will pull some metrics using Cloudwatch client. The results will be written in "results.txt" file for better reading. 
+	
+	\bigskip
+	
+	The final step of the run is a while-loop acting as a check. If you type "analysis" in the terminal, the program will run the analysis function again and overwrite the results text file. However, if you type "terminate", the program will terminate everything including the load balancer, the target groups and the instances.
+	
 	\bigskip
 
+    For the sake of better understanding and clarity, although we do automate pulling some metrics, we actually did the analysis using the Cloudwatch dashboard and doing screenshots of the graph for pertinent metrics.
 
 \section{References} \label{sec:references}
 	
