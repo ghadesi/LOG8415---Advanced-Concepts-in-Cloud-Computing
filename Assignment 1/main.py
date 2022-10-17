@@ -78,13 +78,6 @@ def main():
     """
     Main function of the assignement
     """
-    
-    #initialise the attributs and clients that will be used
-    #The follow 3 can change based on who wants to run (the access token is under me: Aleks)
-    aws_access_key_id = 'ASIAQJSMAGZDQENEWDSC'
-    secret_access_key = 'X7vpvIMF4TfQb0VEqyp327NZeNqI/6vbfpyahc7N'
-    session_token = 'FwoGZXIvYXdzEEMaDHmkuDu2nuu9Wqy/NyLEAZHV0mp21d1TCdsICqtPsu2uRJEvEyHo6OGVmdWcz54KmXHo2HnZaUywhTzE/KVFUWBGA0k+0BYHU9iCz4Ti/o8OK51AmgsplfsTWp+16Ek/Tt2XCemlb1gqO//enJZB+W70pnpPkBkGZIi423n0DAkquncR8bczmTowEpZZ0Tvz7Q+80Wa5cFjMzPhhA/YKK6Xj1mt81oLvmorD8IvWiG3a9rcEWN9drPABPQv27Qo2ec93Z9BeH68D9GsNjKUklIa7glAowdSymgYyLctCqMOnM+TGRl0Q4Ko/wgxcIXMIpXxansEkF4rUcTaFRfH6jS26yq98B2eapg=='
-
 
     #Keypair for access and security group that needs to be assigned when instance is made
     keyPairName = 'LOG8415E'
