@@ -138,12 +138,12 @@
         \begin{figure}[htpb]
         \centering
         \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{cloudwatch.png}
-            \caption\small{Image Retrieved from: https://aws.amazon.com/cloudwatch/}
+            \caption{Image Retrieved from: https://aws.amazon.com/cloudwatch/}
             \label{fig:cw}
         \end{figure}
 
         \subsection{Instances}
-        After we run the main.py 9 instances are created 5 m4.large instances and 4 t2.large instances. you can see the instances attributes in \ref{instances}. 
+        After we run the main.py 9 instances are created 5 m4.large instances and 4 t2.large instances. you can see the instances attributes in \ref{tbl:instances}. 
 
         \begin{table}[]
             \centering
@@ -160,14 +160,26 @@
                cluster2c & 	i-04f73d8bf2d7136aa & us-east-2c\\ \hline
                cluster2d & i-079625ab28844524c& us-east-2d\\\hline
                \hline
-                
             \end{tabular}
              }
-        
-            \label{instances}
+        \caption{Instances Specifications}
+            \label{tbl:instances}
         \end{table}
 
-        After creating instances, the load_balancer is created and then we create a target group for clusters 1 and 2 and next create listeners and rules for listeners on cluster1 and cluster2. you can find them in \ref{table:ett}. Now everything looks good. Instances are created, the target group is created, and all instances now belong to the target group1 or 2. Also, load balancer is configured and listeners and rules are created. so let's go to the final part and run the benchmark and analysis of the system.
+        After creating instances, the load balancer is created and then we create a target group for clusters 1 and 2 and next create listeners and rules for listeners on cluster1 and cluster2. you can find them in Table\ref{table:ett}. Now everything looks good. Instances are created, the target group is created, and all instances now belong to the target group 1 or 2. Also, the load balancer is configured and listeners and rules are created. so let's go to the final part and run the benchmark and analysis of the system. You can find some of the elb and terget1 and target2 Specifications in Table\ref{table:ett}. In target 1 and Target 2, you can find all \textbf{healthy} instances with their IDs, Name and port.
+
+         \begin{table}  
+        \begin{tabular}{p{3 cm} | l} 
+         \begin{tabular}{l} Load Balancer \end{tabular} & \begin{tabular}{l} \includegraphics[scale = 0.2]{elb.png} \end{tabular} \\ 
+        \\\hline\\ 
+       \begin{tabular}{l} Target group 1 \end{tabular}  &  \begin{tabular}{l}\includegraphics[scale = 0.2]{target group1.png} \end{tabular}  \\ 
+           \\\hline\\ 
+         \begin{tabular}{l} Target group 2 \end{tabular}& \begin{tabular}{l}\includegraphics[scale = 0.2]{target group2.png} \end{tabular}\\ 
+         
+        \end{tabular} 
+        \caption{ELB, target group1, target group 2 specification} 
+        \label{table:ett} 
+        \end{table} 
 
         \subsection{Benchmark}
          For this part based on the assignment, we have two functions for each scenario. In scenario1 we send 1000 get requests and in scenario2 we send 500 get requests and then wait for 60 sec and then send 1000 requests again. We repeat this for each cluster1 and then cluster2. Now we try to analyze the whole system. 
@@ -182,82 +194,96 @@
           \begin{figure}[htpb]
         \centering
         \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{cpu utilization all instances 1.png}
-            \caption*\small{CPU utilization of all instances V1}
+            \caption{CPU utilization of all instances V1}
             \label{fig:cpu1}
         \end{figure}
 
          \begin{figure}[htpb]
         \centering
         \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{cpu utilization2 all 2.png}
-            \caption*\small{CPU utilization of all instances V2}
+            \caption{CPU utilization of all instances V2}
             \label{fig:cpu2}
         \end{figure}
 
          \begin{figure}[htpb]
-         
         \centering
         \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{networkpacket in all instances.png}
-            \caption*\small{Network packets in of all instances}
+            \caption{Network packets in of all instances}
             \label{fig:netin}
         \end{figure}
 
-    
+    \begin{figure}[htpb]
+        \centering
         \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{network packets out all instances.png}
-            \caption*\small{Network packets out of all instances}
+            \caption{Network packets out of all instances}
             \label{fig:netout}
         \end{figure}
 
 
         
         \subsubsection{Clusters}
-                \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{target response time cluster1 cluster2.png.png}
-                    \caption*\small{Target response time of Cluster1 and Cluster2}
-                    \label{fig:cpu1}
+
+            I‌ wondered what's the difference between the metrics "NetworkIn"  and "NetworkPacketsIn" and I‌found the answer:\\
+         \textbf{NetworkIn}:‌The number of bytes received by the instance on all network interfaces. This metric identifies the volume of incoming network traffic to a single instance.\\
+        \textbf{NetworkPacketsIn}: The number of packets received by the instance on all network interfaces. This metric identifies the volume of incoming traffic in terms of the number of packets on a single instance.\\
+                \begin{figure}[htpb]
+                \centering
+                \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{target response time cluster1 cluster2.png}
+                    \caption{Target response time of Cluster1 and Cluster2}
+                    \label{fig:targerresponsetimec12}
                 \end{figure}
-                \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{}
-                    \caption*\small{of Cluster1 and Cluster2}
-                    \label{fig:cpu1}
+                \begin{figure}[htpb]
+                \centering
+                \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{Request count per time cluster1 cluster2.png}
+                    \caption{Request count per time of Cluster1 and Cluster2}
+                    \label{fig:reqtimecountc12}
                 \end{figure}
-                \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{}
-                    \caption*\small{of Cluster1 and Cluster2}
-                    \label{fig:cpu1}
+                \begin{figure}[htpb]
+                \centering
+                \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{request count per target.png}
+                    \caption{Request count per target of Cluster1 and Cluster2}
+                    \label{fig:reqtargetcount}
                 \end{figure}
-                \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{}
-                    \caption*\small{of Cluster1 and Cluster2}
-                    \label{fig:cpu1}
+                \begin{figure}[htpb]
+                \centering
+                \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{HTTPCode_Target_2XX_Count cluster1 2 .png}
+                    \caption{HTTP code Target count of Cluster1 and Cluster2}
+                    \label{fig:httpcountc12}
                 \end{figure}
-                \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{}
-                    \caption*\small{of Cluster1 and Cluster2}
-                    \label{fig:cpu1}
-                \end{figure}
+           
 
 
         
         \subsubsection{Load Balancer}
+            \begin{figure}[htpb]
+                \centering
+         \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{request count elb.png}
+                    \caption{Request count (load balancer)}
+                    \label{fig:requescountelb}
+                \end{figure}
+                \begin{figure}[htpb]
+                \centering
+                \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{processed bytes elb.png}
+                    \caption{Processed bytes(load balancer)}
+                    \label{fig:procbyteselb}
+                \end{figure}
 
-    
+            \begin{figure}[htpb]
+                \centering
+           \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{target response time elb.png}
+                    \caption{Target response time (load balancer)}
+                    \label{fig:targetresponsetimeelb}
+                \end{figure}
+        \begin{figure}[htpb]
+                \centering
+           \includegraphics[width=\textwidth,height=6cm,keepaspectratio=true]{HTTPCode_ELB_4XX_Count elb.png}
+                    \caption{HTTPCode ELB 4XX Count (load balancer)}
+                    \label{fig:httpelb}
+                \end{figure}
+           
+           
 
 
-
-         I‌ wondered what's the difference between the metrics "NetworkIn"  and "NetworkPacketsIn" and I‌found the answer:\\
-         \textbf{NetworkIn}:‌The number of bytes received by the instance on all network interfaces. This metric identifies the volume of incoming network traffic to a single instance.\\
-        \textbf{NetworkPacketsIn}: The number of packets received by the instance on all network interfaces. This metric identifies the volume of incoming traffic in terms of the number of packets on a single instance.
-
-
-      
-        \begin{table} 
-        
-        \begin{tabular}{p{3 cm} | l} 
-         \begin{tabular}{l} Load Balancer \end{tabular} & \begin{tabular}{l} \includegraphics[scale = 0.2]{elb.png} \end{tabular} \\ 
-        \\\hline\\ 
-       \begin{tabular}{l} Target group 1 \end{tabular}  &  \begin{tabular}{l}\includegraphics[scale = 0.2]{target group1.png} \end{tabular}  \\ 
-           \\\hline\\ 
-         \begin{tabular}{l} Target group 2 \end{tabular}& \begin{tabular}{l}\includegraphics[scale = 0.2]{target group2.png} \end{tabular}\\ 
-         
-        \end{tabular} 
-        \caption{ELB, target group1, target group 2 specification} 
-        \label{table:ett} 
-        \end{table} 
                             
         
 
