@@ -38,8 +38,8 @@ def create_m4large_cluster(client, keyPair, securityGroup):
                     'ResourceType': 'instance',
                     'Tags': [
                         {
-                            'Key': 'name',
-                            'Value': 'cluster1'
+                            'Key': 'Name',
+                            'Value': 'cluster1' + chr(lowercase_a + instance)
                         },
                     ]
                 },
@@ -89,8 +89,8 @@ def create_t2large_cluster(client, keyPair, securityGroup):
                     'ResourceType': 'instance',
                     'Tags': [
                         {
-                            'Key': 'name',
-                            'Value': 'cluster2'
+                            'Key': 'Name',
+                            'Value': 'cluster2' + chr(lowercase_a + instance)
                         },
                     ]
                 },
