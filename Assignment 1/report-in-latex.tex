@@ -197,14 +197,14 @@
         
 
         \subsubsection{All instances}
-        In this section, we discuss significant metrics of all instances. We talk about CPU utilization during the benchmark and Network in and out. 
+        In this section, we discuss significant metrics of all instances. We talk about CPU utilization during the benchmark and network-in and network-out. 
          Based on the Website\footnote{https://jayendrapatil.com/aws-ec2-instance-types/} "T2 instances are general purpose and designed to provide moderate baseline performance and the capability to burst to significantly higher performance as required". You can find an overview of two instance types used in this homework, M4 and T2 in Table\ref{tbl:m4t2}. The main difference between a t2 instance and an m4 instance is the burstable nature of the t2 instance.\\
         
         Based on AWS \textbf{CPUUtilization} references "This metric identifies the processing power required to run an application on a selected instance." So it reveals a good overview of allocated EC2 compute units for all instances from clusters 1 and 2. In Figure\ref{fig:cpu1} and \ref{fig:cpu2} You can find it for all of them. These are the same figure but Figure\ref{fig:cpu2} is zoomed in to have a better look for analysis. \\
         The blue, orange, green, red, and purple one from cluster 1, and the other are from cluster 2. The highest CPU capacity is used for the gray instance from cluster 2 but the second and third ones (orange green and brown)  are from cluster 1.\\ For a more detailed review  we capture the average CPU capacity of all instances for 15 minutes during the startup and benchmark in Figure \ref{fig:cpu3}. on Average CPU capacity for cluster1 will be $1.3$ and for cluster 2 it will be $1.15$. Clearly, cluster 1 (M4.large instance) is more efficient for what we pay for but Overall both clusters are overloaded for our needs. On Linux-on-demand, they are the almost same price (0.1 dollars per hour for M4 and 0.094 for T2) but for windows-on-demand 0.192 dollars per  hour for M4 and 0.122 per hour for T2.\\
         In figures\ref{fig:netin} and \ref{fig:netout} "NetworkPacketsIn" and  "NetworkPacketsOut" metric. It is The number of packets received/send by the instance on all network interfaces. This metric is available for basic monitoring only (5-minute periods). In this graph, a maximum number of packets send and received by cluster 2 instances. the light purple, gray light green, and brown all from cluster2.\\
           I‌ wondered what's the difference between the metrics "NetworkIn"  and "NetworkPacketsIn" and I‌ found the answer:\\
-         \textbf{NetworkIn}:‌The number of bytes received by the instance on all network interfaces. This metric identifies the volume of incoming network traffic to a single instance.\\
+         \textbf{NetworkIn}:‌ The number of bytes received by the instance on all network interfaces. This metric identifies the volume of incoming network traffic to a single instance.\\
         \textbf{NetworkPacketsIn}: The number of packets received by the instance on all network interfaces. This metric identifies the volume of incoming traffic in terms of the number of packets on a single instance.\\
 
 
@@ -271,7 +271,7 @@
         
         \subsubsection{Clusters}
             In this section, we compare the significant metrics of the two clusters. In Figure\ref{fig:targerresponsetimec12} you can find the average response time of the target group1 and group 2 in one graph which means the time after the request leaves the load balancer until a response from the target is received.\\
-            They almost have the same response time. cluster 2 has a little bit more time but it can be ignored. So we can claim here type of instance is not effective at least in target response time.\\
+            They almost have the same response time. cluster 2 has a little bit higher time but it can be ignored. So we can claim here type of instance is not effective at least in target response time.\\
           
                 \begin{figure}[htpb]
                 \centering
