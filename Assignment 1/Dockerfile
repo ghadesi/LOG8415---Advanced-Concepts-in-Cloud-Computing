@@ -16,6 +16,7 @@ RUN pip install -r requirements.txt
 
 EXPOSE 80 81
 
+
 ENTRYPOINT [ "python" ]
 
 # RUN python main.py
