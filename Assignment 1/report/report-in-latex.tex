@@ -29,7 +29,7 @@
 	Anis \textsc{Zouatene} (1963304)\\
 	Aleksandar \textsc{Stijelja} (1959772)\\
 	Amin Ghadesi\textsc{} (2121658)\\
-    Reza Rouhghalandari \textsc{} (2153395)\\
+        Reza Rouhghalandari \textsc{} (2153395)\\
 	\vfill\vfill\vfill {\large\today} \vfill\vfill
 	\includegraphics{poly-logo.png}\\[1cm]
 	\vfill
@@ -62,15 +62,10 @@
 	to make our final decision on which one to take.
 	\cite{1}\bigskip
 
-	Thus, the goal of this lab is to benchmark 2 different types of EC2 instances, being 
-	M4.large and T2.large. The total number of EC2 instances would be 9 in total and on top 
-	of it we will have to create 2 clusters in the target groups that will both contain one 
-	specific type of the 2 said previously. Of course, for each of these 2 clusters we would 
-	need an Application Load Balancer (ALB). Thereafter, in each instance we will need to deploy 
-	a Flask application, do our tests/benchmark then report the results.
+  \noindent Thus, the goal of this lab is to benchmark 2 different types of EC2 instances, being M4.large and T2.large. The total number of EC2 instances would be 9 in total and on top of it we will have to create 2 clusters in the target groups that will both contain one specific type of the 2 said previously. Of course, for each of these 2 clusters we would need an Application Load Balancer (ALB). Thereafter, in each instance we will need to deploy a Flask application, do our tests/benchmark then report the results.
 	\bigskip
 
-	In this paper, we talk about our methodology which will include virtual machines, the elastic 
+        \noindent In this paper, we talk about our methodology which will include virtual machines, the elastic 
 	load balancer, Flask and how we will conduct our analysis on our VM.
 	\bigskip
 
@@ -78,17 +73,14 @@
 
 
 \section{Methodology} \label{sec:methodology}
-	\paragraph{} In this section, we will go over the different sections that we 
-	worked on to be able to benchmark properly our 9 different instances. We will first
-	go over our virtual machines (instances), our  Elastic load balancer, Flask and 
-	our benchmark analysis. \bigskip
+	\paragraph{} In this section, we will go over the different sections that we worked on to be able to benchmark properly our 9 different instances. We will first go over our virtual machines (instances), our  Elastic load balancer, Flask and our benchmark analysis. \bigskip
 
 	\subsection{Virtual Machines}
 		\paragraph{} As said previously, for our virtual machines we will benchmark 9 instances 
 		of 2 different types. The types being T2.large and M4.large, who each have different 
 		characteristics. As for their number, it will be 4 T2.large instances and 5 M4.large instances. \\
 
-		As for their characteristics, T2.large  instances have double the memory in GiB for a total of 16GiB,
+  \noindent As for their characteristics, T2.large  instances have double the memory in GiB for a total of 16GiB,
 		whereas M4.large have only 8GiB. Another slight difference is in their CPU Clock Speed, where the 
 		M4.large have a 2.4Ghz and the T2.large have a 2.3Ghz.
 		\bigskip
@@ -100,12 +92,12 @@
 		request, it then routes its requests to their targets according to rules setup, usually forwarding them
 		to a specific target group (clusters). \\
 
-		One other aspect of the load balancer is that the user can configure health checks, which monitors the health of the 
+	  \noindent One other aspect of the load balancer is that the user can configure health checks, which monitors the health of the 
 		compute resources, so that the load balancer sends requests only to the healthy ones. As such, if a route/instance becomes
 		unhealthy, it will stop its traffic until it becomes healthy again. In our case, our load balancer will be of the type 
 		application. \\
 
-		With the type being application, our load balancer will route the traffic to two distinct routes, being cluster1 and cluster2.
+	  \noindent With the type being application, our load balancer will route the traffic to two distinct routes, being cluster1 and cluster2.
 		\bigskip
 
 	\subsection{Flask}
@@ -114,7 +106,7 @@
 		offers a high compatibility with the most recent technologies, high scalability for simple applications and its database 
 		integration is simple. \\
 
-		All our instances will have Flask server installed and running in them listening on port 80 which have only one task of replying
+		\noindent All our instances will have Flask server installed and running in them listening on port 80 which have only one task of replying
 		with a message containing the instance ID they are currently on. Since we will have to make numerous calls, the Flask server 
 		will be called multiple times to do the proper benchmark expected to determine the quality of the different type of instances. In addition, it will have 3 path routes to listen to. First being the default path "/" and the others being "/cluster1" and "/cluster2", since our instances will be divided into 2 clusters. Each path routes will return a slightly different message, but all containing the instance ID.
 		\begin{figure}[htpb]
@@ -208,7 +200,7 @@
         We talk about CPU utilization during the benchmark and network-in and network-out. 
          Based on the Website\footnote{https://jayendrapatil.com/aws-ec2-instance-types/} "T2 instances are general purpose and designed to provide moderate baseline performance and the capability to burst to significantly higher performance as required". You can find an overview of two instance types used in this homework, M4 and T2 in Table\ref{tbl:m4t2}. The main difference between a t2 instance and an m4 instance is the burstable nature of the t2 instance.\\
         
-        Based on AWS \textbf{CPUUtilization} references "This metric identifies the processing power required to run an application on a selected instance." So it reveals a good overview of allocated EC2 compute units for all instances from clusters 1 and 2. In Figure\ref{fig:cpu1} and \ref{fig:cpu2} You can find it for all of them. These are the same figure but Figure\ref{fig:cpu2} is zoomed in to have a better look for analysis. \\
+        \noindent Based on AWS \textbf{CPUUtilization} references "This metric identifies the processing power required to run an application on a selected instance." So it reveals a good overview of allocated EC2 compute units for all instances from clusters 1 and 2. In Figure\ref{fig:cpu1} and \ref{fig:cpu2} You can find it for all of them. These are the same figure but Figure\ref{fig:cpu2} is zoomed in to have a better look for analysis. \\
         The blue, orange, green, red, and purple one from cluster 1, and the other are from cluster 2. The highest CPU capacity is used for the gray instance from cluster 2 but the second and third ones (orange green and brown)  are from cluster 1.\\ For a more detailed review  we capture the average CPU capacity of all instances for 15 minutes during the startup and benchmark in Figure \ref{fig:cpu3}. on Average CPU capacity for cluster1 will be $1.3$ and for cluster 2 it will be $1.15$. Clearly, cluster 1 (M4.large instance) is more efficient for what we pay for but Overall both clusters are overloaded for our needs. On Linux-on-demand, they are the almost same price (0.1 dollars per hour for M4 and 0.094 for T2) but for windows-on-demand 0.192 dollars per  hour for M4 and 0.122 per hour for T2.\\
         In figures\ref{fig:netin} and \ref{fig:netout} "NetworkPacketsIn" and  "NetworkPacketsOut" metric. It is The number of packets received/send by the instance on all network interfaces. This metric is available for basic monitoring only (5-minute periods). In this graph, a maximum number of packets send and received by cluster 2 instances. the light purple, gray light green, and brown all from cluster2.\\
           I‌ wondered what's the difference between the metrics "NetworkIn"  and "NetworkPacketsIn" and I‌ found the answer:\\
@@ -342,39 +334,40 @@
                     \caption{HTTPCode ELB 4XX Count (load balancer)}
                     \label{fig:httpelb}
                 \end{figure}
-           
-           
-
-
-                            
-        
-
-
-
 
 	\pagebreak
 
 
 \section{How to run the code} \label{sec:runcode}
-	\paragraph{} To run the program, you need to go configure on your AWS CLI the following attributes:
+	\paragraph{} To run the program, you need to go configure your AWS credentials in the "credentials" file which is in the "Assignment 1" folder of the git repository. The following attributes:
 	\begin{itemize}
       \item awsAccessKeyId
       \item secretAccessKey
       \item sessionToken
     \end{itemize}
-    After these attributes have been modified, once you are in the "assignement 1" folder of the git repository, all you have to do is run the "python main.py". It will then create everything you need and install/setup Flask into each instance, alongside the load balancer, the listener and target groups for both cluster. 
+    After these credentials have been modified, once you are in the Assignment 1" folder of the git repository, all you have to do is run the "script.sh" file. It will build a docker image with all the necessary requirements installed as well as the necessary files for the program. Then the docker will go ahead and run the "main.py".
+    
+    \bigskip
+    
+    \noindent It will then create everything you need and install/setup Flask into each instance, alongside the load balancer, the listener and target groups for both cluster. A key pair and security group will also be created.
 	
 	\bigskip
 	
-	Once all those are setup, it will go ahead and call the benchmark function which for each target group will setup two threads, each accomplishing one of the two scenario, as explained in section 4.4. After that, the analysis function from the "analysis.py" file will pull some metrics using Cloudwatch client. The results will be written in "results.txt" file for better reading. 
+	\noindent Once all those are setup, it will go ahead and call the benchmark function which for each target group will setup two threads, each accomplishing one of the two scenario, as explained in section 4.4. After that, the analysis function from the "analysis.py" file will pull some metrics using Cloudwatch client. The results will be written in "results.txt" file for better reading. 
 	
 	\bigskip
 	
-	The final step of the run is a while-loop acting as a check. If you type "analysis" in the terminal, the program will run the analysis function again and overwrite the results text file. However, if you type "terminate", the program will terminate everything including the load balancer, the target groups and the instances.
+	\noindent The final step of the run, after analysis is done, is the program terminating everything including the load balancer, the target groups and the instances, as well as the key pair and security group.
 	
 	\bigskip
-
-    For the sake of better understanding and clarity, although we do automate pulling some metrics, we actually did the analysis using the Cloudwatch dashboard and doing screenshots of the graph for pertinent metrics.
+	
+    \noindent For the sake of better understanding and clarity, although we do automate pulling some metrics, we actually did the analysis using the Cloudwatch dashboard and doing screenshots of the graph for pertinent metrics.
+    
+    \bigskip
+    
+    \noindent Also, if you want to go straight to running without need to build docker etc.. (this was for the bonus point), you can simply do "python3 main.py" in the terminal when you are in the "Assignment 1" folder and it will run the program.
+    
+\pagebreak
 
 \section{References} \label{sec:references}
 	
