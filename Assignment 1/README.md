@@ -64,3 +64,14 @@ nohup sudo python3 my_app.py &
 
 #### Setup ALB [!](https://www.youtube.com/watch?v=0XMsnAgHXoo&ab_channel=TinyTechnicalTutorials)
 [![asciicast](Setup_pics/ALB.png)](ALB.mov)
+
+#### Setup Docker
+Build the image with the command below:
+```console
+docker build -t cloud_assignment_1 .
+```
+Run the image
+```console
+docker run cloud_assignment_1
+```
+
