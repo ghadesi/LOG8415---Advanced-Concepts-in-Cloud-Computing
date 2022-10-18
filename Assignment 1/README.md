@@ -21,4 +21,4 @@ Make sure the script.sh is in Assignment 1 folder, which contains file necessary
 ```python
 python main.py or python3 main.py
 ```
-Again, make sure you are in Assignment 1 folder, which contains file necessary to build docker and run
+Again, make sure you are in Assignment 1 folder.
