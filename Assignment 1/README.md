@@ -11,7 +11,7 @@ https://github.com/ghadesi/LOG8415---Advanced-Concepts-in-Cloud-Computing.git
 
 There is a detailed section in the report file on how to run the program but essentially you can do it two ways. First,  you need to go configure your AWS credentials in the "credentials" file which is in the "Assignment 1" folder of the git repository.
 
-1- [bonus] Please, run the below command (the shell script will build the docker and runs all scripts inside the docker):
+1- [bonus] Please, run the below command (the shell script will build the docker and run all scripts inside the docker):
 ```python
 source script.sh
 ```
