@@ -8,9 +8,8 @@ from security_group import *
 from key_pair import *
 from ELB import *
 from analysis import *
-
-from dotenv import load_dotenv
 import os
+from dotenv import load_dotenv
 
 load_dotenv("./credentials")
 
