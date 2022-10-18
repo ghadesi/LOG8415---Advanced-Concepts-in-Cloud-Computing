@@ -191,19 +191,21 @@ def main():
     print("Running analysis...")
     analysis(CW, m4Large_cluster_ids, t2Large_cluster_ids, tg_cluster1, tg_cluster2)
 
-    destroy = False
-    while destroy == False:
-        answer = input(
-            "- Enter 'terminate' to terminate the instance, elastic load balancer and target groups\n- Enter 'analysis' to pull metrics again\nChoice?:"
-        )
-        if answer == "terminate":
-            #Destroy everything when user write 'yes'
-            destructor(EC2, ELB, m4Large_cluster_ids, t2Large_cluster_ids, load_balancer, listener, tg_cluster1, tg_cluster2, sg_id, keyPairName)
-            destroy = True
-        elif answer == 'analysis':
-            analysis(CW, m4Large_cluster_ids, t2Large_cluster_ids, tg_cluster1, tg_cluster2)
-        else:
-            continue
+    # destroy = False
+    # while destroy == False:
+    #     answer = input(
+    #         "- Enter 'terminate' to terminate the instance, elastic load balancer and target groups\n- Enter 'analysis' to pull metrics again\nChoice?:"
+    #     )
+    #     if answer == "terminate":
+    #         #Destroy everything when user write 'yes'
+    #         destructor(EC2, ELB, m4Large_cluster_ids, t2Large_cluster_ids, load_balancer, listener, tg_cluster1, tg_cluster2, sg_id, keyPairName)
+    #         destroy = True
+    #     elif answer == 'analysis':
+    #         analysis(CW, m4Large_cluster_ids, t2Large_cluster_ids, tg_cluster1, tg_cluster2)
+    #     else:
+    #         continue
+
+    destructor(EC2, ELB, m4Large_cluster_ids, t2Large_cluster_ids, load_balancer, listener, tg_cluster1, tg_cluster2, sg_id, keyPairName)
 
 
 def destructor(
