@@ -28,22 +28,25 @@ Append following lines to it and save.
 export JAVA_HOME=/usr/lib/jvm/java-18-oracle
 export PATH=$JAVA_HOME/bin 
 ```
+
+
+Note that after editing, you should re-login in order to initialize the variables, but you could use following command and use the variable without re-login.
+
+```bash
+source ~/.profile 
+```
+
 or instead of open profile and add these line just type this command: 
 
 ```bash
-export JAVA_HOME=/usr/lib/jvm/java-18-openjdk-amd64/bin/java
+echo "export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64" >> ~/.bashrc
+source ~/.bashrc
 ```
 
 Check the value of JAVA_HOME directory:
 
 ```bash
 echo $JAVA_HOME
-```
-
-Note that after editing, you should re-login in order to initialize the variables, but you could use following command and use the variable without re-login.
-
-```bash
-source ~/.profile 
 ```
 
 If you get error like "The command could not be located because '/bin:/usr/bin' is not included in the PATH environment variable." run this command to fix it.
