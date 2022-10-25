@@ -39,8 +39,8 @@ source ~/.profile
 or instead of open profile and add these line just type this command: 
 
 ```bash
-echo "export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64" >> ~/.bashrc
-source ~/.bashrc
+echo "export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64" >> ~/.profile
+source ~/.profile
 ```
 
 Check the value of JAVA_HOME directory:
@@ -61,17 +61,15 @@ The source prefer Hadoop being installed in /usr/local directory (I don't know w
 
 ```bash
 wget "https://dlcdn.apache.org/hadoop/common/hadoop-3.3.4/hadoop-3.3.4-site.tar.gz"
-sudo tar -xf hadoop-3.3.4-site.tar.gz -C /usr/local/ 
+sudo tar -xf hadoop-3.3.4-site.tar.gz -C /usr/local/
 ```
 Then open profile and Append following lines to it and save.
 
-```bash
-nano ~/.bashrc 
-```
 
 ```bash
-export HADOOP_PREFIX=/usr/local/hadoop-3.3.4
-export PATH=$HADOOP_PREFIX/bin:$PATH
+echo "export HADOOP_PREFIX=/usr/local/hadoop-3.3.4" >> ~/.profile
+echo "export PATH=$HADOOP_PREFIX/bin:$PATH" >> ~/.profile
+source ~/.profile
 ```
 
 ```bash
