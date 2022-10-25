@@ -27,10 +27,19 @@ Append following lines to it and save.
 ```bash
 export JAVA_HOME=/usr/lib/jvm/java-18-oracle
 export PATH=$JAVA_HOME/bin 
-
-export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/bin/java
-
 ```
+or instead of open profile and add these line just type this command: 
+
+```bash
+export JAVA_HOME=/usr/lib/jvm/java-18-openjdk-amd64/bin/java
+```
+
+Check the value of JAVA_HOME directory:
+
+```bash
+echo $JAVA_HOME
+```
+
 Note that after editing, you should re-login in order to initialize the variables, but you could use following command and use the variable without re-login.
 
 ```bash
