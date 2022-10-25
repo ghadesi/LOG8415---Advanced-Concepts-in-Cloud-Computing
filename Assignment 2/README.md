@@ -10,9 +10,7 @@ java -version
 ```
 In case you have not already installed Java:
 
-```bash
 
-```
 
 ```bash
 sudo apt-get update
@@ -20,7 +18,7 @@ sudo apt install -y openjdk-18-jdk
 sudo apt install -y openjdk-18-jre
 ```
 
-Once Java is installed, you should set JAVA_HOME/bin to your PATH, to ensure java is available from the command line.
+Once Java is installed, you should set JAVA_HOME/bin to your PATH, to ensure java is available from the command line. Profile is run once when we run our instance.
 ```bash
 nano ~/.profile  
 ```
@@ -35,3 +33,33 @@ Note that after editing, you should re-login in order to initialize the variable
 ```bash
 source ~/.profile 
 ```
+
+If you get error like "The command could not be located because '/bin:/usr/bin' is not included in the PATH environment variable." run this command to fix it.
+
+```bash
+export PATH="/usr/bin:$PATH"
+```
+
+I found the last hadoop version from thin link:  then download it.
+
+The source prefer Hadoop being installed in /usr/local directory (I don't know why!). Decompress the downloaded file using the following command.
+
+```bash
+wget "https://dlcdn.apache.org/hadoop/common/hadoop-3.3.4/hadoop-3.3.4-site.tar.gz"
+sudo tar -xf hadoop-3.3.4-site.tar.gz -C /usr/local/ 
+```
+Then open profile and Append following lines to it and save.
+
+```bash
+nano ~/.profile 
+```
+
+```bash
+export HADOOP_PREFIX=/usr/local/hadoop-3.3.4
+export PATH=$HADOOP_PREFIX/bin:$PATH
+```
+
+```bash
+
+```
+
