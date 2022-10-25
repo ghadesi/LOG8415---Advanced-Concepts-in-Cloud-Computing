@@ -27,6 +27,9 @@ Append following lines to it and save.
 ```bash
 export JAVA_HOME=/usr/lib/jvm/java-18-oracle
 export PATH=$JAVA_HOME/bin 
+
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/bin/java
+
 ```
 Note that after editing, you should re-login in order to initialize the variables, but you could use following command and use the variable without re-login.
 
