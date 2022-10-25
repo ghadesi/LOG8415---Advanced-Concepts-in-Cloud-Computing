@@ -7,7 +7,5 @@ Java install on ubuntu: https://ubuntuhandbook.org/index.php/2014/02/install-ora
 ```bash
 Javac
 java -version
-<!---
-hi
--->
+[comment]: <> (This is a comment, it will not be included)
 ```
