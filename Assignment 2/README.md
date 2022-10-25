@@ -39,7 +39,8 @@ source ~/.profile
 or instead of open profile and add these line just type this command: 
 
 ```bash
-sudo echo "export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/" >> ~/.profile
+sudo echo "export JAVA_HOME=/usr/lib/jvm/java-18-oracle" >> ~/.profile
+sudo echo "export PATH=$JAVA_HOME/bin" >> ~/.profile
 source ~/.profile
 ```
 
