@@ -69,15 +69,16 @@ Then open profile and Append following lines to it and save.
 
 
 ```bash
-echo "export HADOOP_PREFIX=/usr/local/hadoop-3.3.4" >> ~/.profile
-echo "export PATH=$HADOOP_PREFIX/bin:$PATH" >> ~/.profile
+echo "export HADOOP_HOME=/usr/local/hadoop/" >> ~/.profile
+echo "export PATH=$PATH:$HADOOP_HOME/bin" >> ~/.profile
+echo "export HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop" >> ~/.profile
 source ~/.profile
 ```
 Define following parameters in etc/hadoop/hadoop-env.sh file.
 
 ```bash
-echo "export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 /usr/local/hadoop-3.3.4/etc/hadoop/hadoop-env.sh"
-echo "export HADOOP_PREFIX=/usr/local/hadoop-3.3.4 /usr/local/hadoop-3.3.4/etc/hadoop/hadoop-env.sh"
+echo "export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 /usr/local/hadoop/etc/hadoop/hadoop-env.sh"
+echo "export HADOOP_PREFIX=/usr/local/hadoop-3.3.4 /usr/local/hadoo/etc/hadoop/hadoop-env.sh"
 source /usr/local/hadoop-3.3.4/etc/hadoop/hadoop-env.sh
 ```
 
