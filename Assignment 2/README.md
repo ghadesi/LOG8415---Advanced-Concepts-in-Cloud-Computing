@@ -66,7 +66,7 @@ sudo tar -xf hadoop-3.3.4-site.tar.gz -C /usr/local/
 Then open profile and Append following lines to it and save.
 
 ```bash
-nano ~/.profile 
+nano ~/.bashrc 
 ```
 
 ```bash
