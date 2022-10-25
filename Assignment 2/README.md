@@ -55,6 +55,7 @@ If you get error like "The command could not be located because '/bin:/usr/bin' 
 export PATH="/usr/bin:$PATH"
 ```
 
+
 I found the last hadoop version from thin link:  then download it.
 
 The source prefer Hadoop being installed in /usr/local directory (I don't know why!). Decompress the downloaded file using the following command.
@@ -62,6 +63,7 @@ The source prefer Hadoop being installed in /usr/local directory (I don't know w
 ```bash
 sudo wget "https://dlcdn.apache.org/hadoop/common/hadoop-3.3.4/hadoop-3.3.4.tar.gz"
 sudo tar -xf hadoop-3.3.4.tar.gz  -C /usr/local/
+sudo mv /usr/local/hadoop-* /usr/local/hadoop
 ```
 Then open profile and Append following lines to it and save.
 
@@ -92,6 +94,12 @@ mkdir input_data && cd input_data
 touch input.txt
 ```
 
+# Install SSH
+
+```bash
+apt-get install ssh -y
+
+```
 
 
 
