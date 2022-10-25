@@ -68,9 +68,8 @@ sudo mv /usr/local/hadoop-* /usr/local/hadoop
 ```
 Then open profile and Append following lines to it and save.
 
-
 ```bash
-echo "export HADOOP_HOME=/usr/local/hadoop/" >> ~/.profile
+echo "export HADOOP_HOME=/usr/local/hadoop" >> ~/.profile
 echo "export PATH=$PATH:$HADOOP_HOME/bin" >> ~/.profile
 echo "export HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop" >> ~/.profile
 source ~/.profile
