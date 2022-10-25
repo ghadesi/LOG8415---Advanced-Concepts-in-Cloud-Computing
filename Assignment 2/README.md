@@ -7,5 +7,11 @@ Java install on ubuntu: https://ubuntuhandbook.org/index.php/2014/02/install-ora
 ```bash
 Javac
 java -version
-[comment]: <> (This is a comment, it will not be included)
+```
+In case you have not already installed Java:
+
+```bash
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+
 ```
