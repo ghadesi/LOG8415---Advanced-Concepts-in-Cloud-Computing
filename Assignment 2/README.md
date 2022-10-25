@@ -83,3 +83,16 @@ source /usr/local/hadoop-3.3.4/etc/hadoop/hadoop-env.sh
 
 ```
 
+I get the word count from here: https://www.dropbox.com/s/yp9i7nwmgzr3nkx/WordCount.java?dl=0
+
+```bash
+mkdir example && cd example
+touch WordCount.java
+mkdir input_data && cd input_data
+touch input.txt
+```
+
+
+
+
+
