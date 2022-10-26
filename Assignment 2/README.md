@@ -74,6 +74,16 @@ echo "export PATH=$PATH:$HADOOP_HOME/bin" >> ~/.profile
 echo "export HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop" >> ~/.profile
 source ~/.profile
 ```
+
+Finally these line should be added to profile
+```bash
+export JAVA_HOME=/usr/lib/jvm/java-18-oracle
+export PATH=$JAVA_HOME/bin 
+export HADOOP_HOME=/usr/local/hadoop/
+export PATH=$PATH:$HADOOP_HOME/bin
+export HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop
+```
+
 Define following parameters in etc/hadoop/hadoop-env.sh file.
 
 ```bash
@@ -82,9 +92,6 @@ echo "export HADOOP_PREFIX=/usr/local/hadoop-3.3.4 /usr/local/hadoo/etc/hadoop/h
 source /usr/local/hadoop-3.3.4/etc/hadoop/hadoop-env.sh
 ```
 
-```bash
-
-```
 
 I get the word count from here: https://www.dropbox.com/s/yp9i7nwmgzr3nkx/WordCount.java?dl=0
 
