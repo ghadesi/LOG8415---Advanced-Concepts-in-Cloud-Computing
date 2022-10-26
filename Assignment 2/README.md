@@ -25,7 +25,7 @@ nano ~/.profile
 Append following lines to it and save.
 
 ```bash
-export JAVA_HOME=/usr/lib/jvm/java-18-openjdk-amd64
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 export PATH=$JAVA_HOME/bin 
 ```
 
@@ -39,7 +39,7 @@ source ~/.profile
 or instead of open profile and add these line just type this command: 
 
 ```bash
-sudo echo "export JAVA_HOME=/usr/lib/jvm/java-18-openjdk-amd64" >> ~/.profile
+sudo echo "export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64" >> ~/.profile
 sudo echo "export PATH=$JAVA_HOME/bin" >> ~/.profile
 source ~/.profile
 ```
@@ -77,8 +77,8 @@ source ~/.profile
 
 Finally these line should be added to profile
 ```bash
-export JAVA_HOME=/usr/lib/jvm/java-18-openjdk-amd64
-#export JAVA_HOME=/usr/lib/jvm/java-18-oracle
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+#export JAVA_HOME=/usr/lib/jvm/java-11-oracle
 export PATH=$PATH:$JAVA_HOME/bin 
 export HADOOP_HOME=/usr/local/hadoop/
 export PATH=$PATH:$HADOOP_HOME/bin
@@ -88,7 +88,7 @@ export HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop
 Define following parameters in etc/hadoop/hadoop-env.sh file.
 
 ```bash
-echo "export JAVA_HOME=/usr/lib/jvm/java-18-openjdk-amd64" >> /usr/local/hadoop/etc/hadoop/hadoop-env.sh
+echo "export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64" >> /usr/local/hadoop/etc/hadoop/hadoop-env.sh
 echo "export HADOOP_PREFIX=/usr/local/hadoop" >> /usr/local/hadoo/etc/hadoop/hadoop-env.sh
 source /usr/local/hadoop/etc/hadoop/hadoop-env.sh
 ```
