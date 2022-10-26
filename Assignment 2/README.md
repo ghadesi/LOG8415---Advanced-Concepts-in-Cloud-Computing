@@ -14,8 +14,8 @@ In case you have not already installed Java:
 
 ```bash
 sudo apt-get update
-sudo apt install default-jre
-sudo apt install default-jdk
+sudo apt install default-jre -y
+sudo apt install default-jdk -y
 ```
 
 Once Java is installed, you should set JAVA_HOME/bin to your PATH, to ensure java is available from the command line. Profile is run once when we run our instance.
