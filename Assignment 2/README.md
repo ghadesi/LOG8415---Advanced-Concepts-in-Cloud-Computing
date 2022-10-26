@@ -78,7 +78,7 @@ source ~/.profile
 Finally these line should be added to profile
 ```bash
 export JAVA_HOME=/usr/lib/jvm/java-18-oracle
-export PATH=$JAVA_HOME/bin 
+export PATH=$PATH:$JAVA_HOME/bin 
 export HADOOP_HOME=/usr/local/hadoop/
 export PATH=$PATH:$HADOOP_HOME/bin
 export HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop
