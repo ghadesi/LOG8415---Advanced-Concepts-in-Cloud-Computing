@@ -133,7 +133,21 @@ cd /usr/local/hadoop/myexample
 touch WordCount.java
 touch input.txt
 ```
+
 I get word count from here: http://svn.apache.org/viewvc/hadoop/common/trunk/hadoop-mapreduce-project/hadoop-mapreduce-examples/src/main/java/org/apache/hadoop/examples/WordCount.java?view=log
+
+```bash
+cd /usr/local/hadoop/etc/hadoop
+sudo nano nano core-site.xml
+
+<configuration>
+  <property>
+      <name>fs.defaultFS</name>
+      <value>hdfs://ec2-44-200-190-242.compute-1.amazonaws.com:9000</value>
+    </property>
+</configuration>
+
+```
 
 
 ```bash
