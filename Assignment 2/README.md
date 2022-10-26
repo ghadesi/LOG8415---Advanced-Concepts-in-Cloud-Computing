@@ -96,7 +96,7 @@ echo "export HADOOP_PREFIX=/usr/local/hadoop" >> /usr/local/hadoo/etc/hadoop/had
 source /usr/local/hadoop/etc/hadoop/hadoop-env.sh
 ```
 
-
+/*
 I get the word count from here: https://www.dropbox.com/s/yp9i7nwmgzr3nkx/WordCount.java?dl=0
 
 ```bash
@@ -112,7 +112,7 @@ touch input.txt
 apt-get install ssh -y
 
 ```
-
+*/
 
 
 
