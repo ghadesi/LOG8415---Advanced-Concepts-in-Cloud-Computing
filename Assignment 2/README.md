@@ -2,7 +2,8 @@
 
 Hadoop tutorial: http://dzone.com/articles/getting-hadoop-and-running.
 
-Java install on ubuntu: [https://ubuntuhandbook.org/index.php/2014/02/install-oracle-java-6-7-or-8-ubuntu-14-04/](https://linuxhint.com/install-java-ubuntu-22-04/)
+Java install on ubuntu:
+
 
 ```bash
 Javac
@@ -10,13 +11,15 @@ java -version
 ```
 In case you have not already installed Java:
 
-
-
 ```bash
 sudo apt-get update
 sudo apt install default-jre -y
 sudo apt install default-jdk -y
 ```
+Now check java version. in my case following this photo my java version is 11.So from now on everywhere you see java-11 you can repalce ir with your java version.
+
+![java version](https://user-images.githubusercontent.com/80580733/197911176-e3d57be0-6cc8-4878-a1f5-cffe99f8d5e5.png)
+
 
 Once Java is installed, you should set JAVA_HOME/bin to your PATH, to ensure java is available from the command line. Profile is run once when we run our instance.
 ```bash
