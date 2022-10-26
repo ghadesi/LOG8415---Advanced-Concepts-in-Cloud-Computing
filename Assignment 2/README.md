@@ -121,11 +121,17 @@ Hadoop comes with a set of demonstration programs.
 They are in usr/local/hadoop/src/examples/org/apache/hadoop/examples/. One of them is WordCount.java which will
 automatically compute the word frequency of all text files found in the HDFS directory you ask it to process.
 
-```diff
-There is such foler mentioned in the assignment in hadoop folder so we create a folder named example in /usr/local/hadoop/
-@@ text in purple (and bold)@@
+:warning: ** There is such foler mentioned in the assignment in hadoop folder so we create a folder named example in /usr/local/hadoop/**
+
+Everytime we run instances we go to example directory:
+
+```bash
+cd /usr/local/hadoop/myexample
 ```
 
 
+```bash
+
+```
 
 Gutenberg textual data. http://www.gutenberg.org/cache/epub/4300/pg4300.txt.
