@@ -1,4 +1,4 @@
-#This a summary for What We have done during the assigment.
+# This a summary for What We have done during the assigment.
 
 Hadoop tutorial: http://dzone.com/articles/getting-hadoop-and-running.
 
@@ -115,11 +115,19 @@ apt-get install ssh -y
 ---> 
 
 
-#Experiments with WordCount
+# Experiments with WordCount
 
 Hadoop comes with a set of demonstration programs.
-They are in /hadoop/src/examples/org/apache/hadoop/examples/. One of them is WordCount.java which will
+They are in usr/local/hadoop/src/examples/org/apache/hadoop/examples/. One of them is WordCount.java which will
 automatically compute the word frequency of all text files found in the HDFS directory you ask it to process.
+
+
+You can use the diff language tag to generate some colored text:
+
+```diff
+There is such foler mentioned in the assignment in hadoop folder
+@@ text in purple (and bold)@@
+```
 
 
 
