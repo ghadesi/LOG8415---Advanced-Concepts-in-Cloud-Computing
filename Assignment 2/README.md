@@ -121,11 +121,8 @@ Hadoop comes with a set of demonstration programs.
 They are in usr/local/hadoop/src/examples/org/apache/hadoop/examples/. One of them is WordCount.java which will
 automatically compute the word frequency of all text files found in the HDFS directory you ask it to process.
 
-
-You can use the diff language tag to generate some colored text:
-
 ```diff
-There is such foler mentioned in the assignment in hadoop folder
+There is such foler mentioned in the assignment in hadoop folder so we create a folder named example in /usr/local/hadoop/
 @@ text in purple (and bold)@@
 ```
 
