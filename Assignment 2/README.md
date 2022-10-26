@@ -129,6 +129,19 @@ Everytime we run instances we go to example directory:
 cd /usr/local/hadoop/myexample
 ```
 
+```bash
+touch WordCount.java
+touch input.txt
+```
+I get word count from here: http://svn.apache.org/viewvc/hadoop/common/trunk/hadoop-mapreduce-project/hadoop-mapreduce-examples/src/main/java/org/apache/hadoop/examples/WordCount.java?view=log
+
+hadoop jar hadoop -0.19.2-examples.jar wordcount input outputhadoop-mapreduce-examples-3.3.4.jar
+
+
+hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.4.jar grep input output 'dfs[a-z.]+'
+
+
+
 
 ```bash
 
