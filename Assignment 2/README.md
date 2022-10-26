@@ -115,4 +115,12 @@ apt-get install ssh -y
 ---> 
 
 
+#Experiments with WordCount
 
+Hadoop comes with a set of demonstration programs.
+They are in /hadoop/src/examples/org/apache/hadoop/examples/. One of them is WordCount.java which will
+automatically compute the word frequency of all text files found in the HDFS directory you ask it to process.
+
+
+
+Gutenberg textual data. http://www.gutenberg.org/cache/epub/4300/pg4300.txt.
