@@ -171,16 +171,12 @@ hadoop fs -cat /usr/local/hadoop/myexample/output/part-00000
 ```
 
 
-
-
-
-
 I get word count from here: http://svn.apache.org/viewvc/hadoop/common/trunk/hadoop-mapreduce-project/hadoop-mapreduce-examples/src/main/java/org/apache/hadoop/examples/WordCount.java?view=log
 
 
-
 ```bash
+time hadoop jar wc.jar WordCount dataset/pg4300.txt output3
+time cat pg4300.txt | tr '[:space:]' '[\n*]' | grep -v "^\s*$" | sort | uniq -c 
 
 ```
 
-Gutenberg textual data. http://www.gutenberg.org/cache/epub/4300/pg4300.txt.
