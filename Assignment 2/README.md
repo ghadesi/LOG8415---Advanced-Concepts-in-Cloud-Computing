@@ -170,6 +170,11 @@ See the Output:
 hadoop fs -cat /usr/local/hadoop/myexample/output/part-00000 
 ```
 
+
+
+
+
+
 I get word count from here: http://svn.apache.org/viewvc/hadoop/common/trunk/hadoop-mapreduce-project/hadoop-mapreduce-examples/src/main/java/org/apache/hadoop/examples/WordCount.java?view=log
 
 
