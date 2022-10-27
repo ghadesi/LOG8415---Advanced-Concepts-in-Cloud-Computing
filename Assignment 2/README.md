@@ -168,12 +168,6 @@ See the Output:
 hadoop fs -cat /user/joe/wordcount/output/part-r-00000
 ```
 
-
-```bash
-touch WordCount.java
-touch input.txt
-```
-
 I get word count from here: http://svn.apache.org/viewvc/hadoop/common/trunk/hadoop-mapreduce-project/hadoop-mapreduce-examples/src/main/java/org/apache/hadoop/examples/WordCount.java?view=log
 
 
