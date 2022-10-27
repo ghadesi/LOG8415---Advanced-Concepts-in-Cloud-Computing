@@ -177,6 +177,10 @@ I get word count from here: http://svn.apache.org/viewvc/hadoop/common/trunk/had
 ```bash
 time hadoop jar wc.jar WordCount dataset/pg4300.txt output3
 time cat pg4300.txt | tr '[:space:]' '[\n*]' | grep -v "^\s*$" | sort | uniq -c 
-
 ```
+
+```bash
+hadoop jar contrib/streaming/hadoop-streaming-1.2.1.jar -input myinput -output myoutput -mapper /home/expert/hadoop-1.2.1/mapper.py -reducer /home/expert/hadoop-1.2.1/reducer.py```
+
+
 
