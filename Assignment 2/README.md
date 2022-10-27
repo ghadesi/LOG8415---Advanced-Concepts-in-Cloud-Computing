@@ -112,29 +112,6 @@ touch input.txt
 apt-get install ssh -y
 
 ```
----> 
-
-
-# Experiments with WordCount
-
-Hadoop comes with a set of demonstration programs.
-They are in usr/local/hadoop/src/examples/org/apache/hadoop/examples/. One of them is WordCount.java which will
-automatically compute the word frequency of all text files found in the HDFS directory you ask it to process.
-
-:warning: ** There is such foler mentioned in the assignment in hadoop folder so we create a folder named example in /usr/local/hadoop/**
-
-Everytime we run instances we go to example directory:
-
-```bash
-cd /usr/local/hadoop/myexample
-```
-
-```bash
-touch WordCount.java
-touch input.txt
-```
-
-I get word count from here: http://svn.apache.org/viewvc/hadoop/common/trunk/hadoop-mapreduce-project/hadoop-mapreduce-examples/src/main/java/org/apache/hadoop/examples/WordCount.java?view=log
 
 ```bash
 cd /usr/local/hadoop/etc/hadoop
@@ -149,7 +126,6 @@ sudo nano nano core-site.xml
 
 ```
 
-
 ```bash
 hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.4.jar grep input output 'dfs[a-z.]+'
 
@@ -157,6 +133,50 @@ hadoop jar /home/cloudera/WordCount.jar WordCount /inputnew/inputfile.txt /outpu
 
 ```
 # Hadoop HDFS
+---> 
+
+
+# Experiments with WordCount
+
+Hadoop comes with a set of demonstration programs. One of them is WordCount.java which will
+automatically compute the word frequency of all text files found in the HDFS directory you ask it to process.
+
+We create a Worcount.java file with our desire algorithm. 
+
+```bash
+nano WordCount.java
+```
+Then We Compile WordCount.java and create a jar:
+
+```bash
+hadoop com.sun.tools.javac.Main WordCount.java
+jar cf wc.jar WordCount*.class
+```
+Create a sample input file in a folder name input.txt
+
+```bash
+hadoop fs -ls /user/joe/wordcount/input/
+```
+Then run it: 
+
+```bash
+hadoop jar wc.jar WordCount /user/joe/wordcount/input /user/joe/wordcount/output
+```
+See the Output: 
+
+```bash
+hadoop fs -cat /user/joe/wordcount/output/part-r-00000
+```
+
+
+```bash
+touch WordCount.java
+touch input.txt
+```
+
+I get word count from here: http://svn.apache.org/viewvc/hadoop/common/trunk/hadoop-mapreduce-project/hadoop-mapreduce-examples/src/main/java/org/apache/hadoop/examples/WordCount.java?view=log
+
+
 
 ```bash
 
