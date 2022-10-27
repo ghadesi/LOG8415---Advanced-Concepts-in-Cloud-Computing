@@ -180,7 +180,11 @@ time cat pg4300.txt | tr '[:space:]' '[\n*]' | grep -v "^\s*$" | sort | uniq -c
 ```
 
 ```bash
-hadoop jar contrib/streaming/hadoop-streaming-1.2.1.jar -input myinput -output myoutput -mapper /home/expert/hadoop-1.2.1/mapper.py -reducer /home/expert/hadoop-1.2.1/reducer.py```
+hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.3.4.jar -input pg4300.txt -output myoutput -mapper mapper.py -reducer reducer.py
+
+hadoop jar  /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.3.4.jar  -file mapper.py -mapper mapper.py -file reducer.py -reducer reducer.py -input soc-LiveJournal1Adj.txt -output output
+
+```
 
 
 
