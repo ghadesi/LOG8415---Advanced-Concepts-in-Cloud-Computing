@@ -155,17 +155,19 @@ jar cf wc.jar WordCount*.class
 Create a sample input file in a folder name input.txt
 
 ```bash
-hadoop fs -ls /user/joe/wordcount/input/
+hadoop fs -ls /usr/local/hadoop/myexample/input
+#Found 1 items
+#-rw-r--r--   1 root root         62 2022-10-26 05:01 /usr/local/hadoop/myexample/input/input.txt
 ```
 Then run it: 
 
 ```bash
-hadoop jar wc.jar WordCount /user/joe/wordcount/input /user/joe/wordcount/output
+hadoop jar wc.jar WordCount /usr/local/hadoop/myexample/input /usr/local/hadoop/myexample/output
 ```
 See the Output: 
 
 ```bash
-hadoop fs -cat /user/joe/wordcount/output/part-r-00000
+hadoop fs -cat /usr/local/hadoop/myexample/output/part-00000 
 ```
 
 I get word count from here: http://svn.apache.org/viewvc/hadoop/common/trunk/hadoop-mapreduce-project/hadoop-mapreduce-examples/src/main/java/org/apache/hadoop/examples/WordCount.java?view=log
