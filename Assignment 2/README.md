@@ -92,7 +92,7 @@ Define following parameters in etc/hadoop/hadoop-env.sh file.
 
 ```bash
 echo "export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64" >> /usr/local/hadoop/etc/hadoop/hadoop-env.sh
-echo "export HADOOP_PREFIX=/usr/local/hadoop" >> /usr/local/hadoo/etc/hadoop/hadoop-env.sh
+echo "export HADOOP_PREFIX=/usr/local/hadoop" >> /usr/local/hadoop/etc/hadoop/hadoop-env.sh
 source /usr/local/hadoop/etc/hadoop/hadoop-env.sh
 ```
 
