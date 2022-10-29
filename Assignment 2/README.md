@@ -1,76 +1,45 @@
-# This a summary for What We have done during the assigment.
+# Assignement 2 (Azure)
 
-Hadoop tutorial: http://dzone.com/articles/getting-hadoop-and-running.
+We did this assignement on an Azure Ubuntu VM
 
-Java install on ubuntu:
-
-
+Once in the Azure VM terminal, make sure you are in ~
 ```bash
-Javac
-java -version
-```
-In case you have not already installed Java:
-
-```bash
-sudo apt-get update
-sudo apt install default-jre -y
-sudo apt install default-jdk -y
-```
-Now check java version. in my case following this photo my java version is 11.So from now on everywhere you see java-11 you can repalce ir with your java version.
-
-![java version](https://user-images.githubusercontent.com/80580733/197911176-e3d57be0-6cc8-4878-a1f5-cffe99f8d5e5.png)
-
-
-Once Java is installed, you should set JAVA_HOME/bin to your PATH, to ensure java is available from the command line. Profile is run once when we run our instance.
-```bash
-nano ~/.profile  
-```
-Append following lines to it and save.
-
-```bash
-export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
-export PATH=$JAVA_HOME/bin 
+cd ~
 ```
 
-
-Note that after editing, you should re-login in order to initialize the variables, but you could use following command and use the variable without re-login.
-
+Go to admin mode so you don't need to sudo all the time and no permissions problem
 ```bash
-source ~/.profile 
+sudo su
 ```
 
-or instead of open profile and add these line just type this command: 
-
+Go back to root
 ```bash
-sudo echo "export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64" >> ~/.profile
-sudo echo "export PATH=$JAVA_HOME/bin" >> ~/.profile
+cd ~
+```
+
+Install latest Azure VM updates and java
+```bash
+apt-get update
+apt install default-jre -y
+apt install default-jdk -y
+```
+
+Append following lines to profile and save
+```bash
+echo "export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64" >> ~/.profile
+echo "export PATH=$JAVA_HOME/bin" >> ~/.profile
 source ~/.profile
 ```
 
-Check the value of JAVA_HOME directory:
+Next, get hadoop tar, decompress it and move it to a usr/local/hadoop folder
 
 ```bash
-echo $JAVA_HOME
+wget "https://dlcdn.apache.org/hadoop/common/hadoop-3.3.4/hadoop-3.3.4.tar.gz"
+tar -xf hadoop-3.3.4.tar.gz  -C /usr/local/
+mv /usr/local/hadoop-* /usr/local/hadoop
 ```
 
-If you get error like "The command could not be located because '/bin:/usr/bin' is not included in the PATH environment variable." run this command to fix it.
-
-```bash
-export PATH="/usr/bin:$PATH"
-```
-
-
-I found the last hadoop version from thin link:  then download it.
-
-The source prefer Hadoop being installed in /usr/local directory (I don't know why!). Decompress the downloaded file using the following command.
-
-```bash
-sudo wget "https://dlcdn.apache.org/hadoop/common/hadoop-3.3.4/hadoop-3.3.4.tar.gz"
-sudo tar -xf hadoop-3.3.4.tar.gz  -C /usr/local/
-sudo mv /usr/local/hadoop-* /usr/local/hadoop
-```
-Then open profile and Append following lines to it and save.
-
+Then open profile and Append following lines to it and save
 ```bash
 echo "export HADOOP_HOME=/usr/local/hadoop" >> ~/.profile
 echo "export PATH=$PATH:$HADOOP_HOME/bin" >> ~/.profile
@@ -78,115 +47,116 @@ echo "export HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop" >> ~/.profile
 source ~/.profile
 ```
 
-Finally these line should be added to profile
-```bash
-export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
-#export JAVA_HOME=/usr/lib/jvm/java-11-oracle
-export PATH=$PATH:$JAVA_HOME/bin 
-export HADOOP_HOME=/usr/local/hadoop/
-export PATH=$PATH:$HADOOP_HOME/bin
-export HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop
-```
-
-Define following parameters in etc/hadoop/hadoop-env.sh file.
-
+Define following parameters in etc/hadoop/hadoop-env.sh file
 ```bash
 echo "export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64" >> /usr/local/hadoop/etc/hadoop/hadoop-env.sh
 echo "export HADOOP_PREFIX=/usr/local/hadoop" >> /usr/local/hadoop/etc/hadoop/hadoop-env.sh
 source /usr/local/hadoop/etc/hadoop/hadoop-env.sh
 ```
 
- <!--- 
-I get the word count from here: https://www.dropbox.com/s/yp9i7nwmgzr3nkx/WordCount.java?dl=0
-
+Try to type ```hadoop``` in terminal, if you don't get hadoop menu, then type
 ```bash
-mkdir example && cd example
-touch WordCount.java
-mkdir input_data && cd input_data
-touch input.txt
+export PATH=$PATH:/usr/local/hadoop/bin/
 ```
 
-# Install SSH
+## Running Hadoop
+We have based our WordCount.java from the following websites:
 
-```bash
-apt-get install ssh -y
+<http://svn.apache.org/viewvc/hadoop/common/trunk/hadoop-mapreduce-project/hadoop-mapreduce-examples/src/main/java/org/apache/hadoop/examples/WordCount.java?view=log>
 
-```
+<https://stackoverflow.com/questions/26700910/hadoop-java-error-exception-in-thread-main-java-lang-noclassdeffounderror-w>
 
-```bash
-cd /usr/local/hadoop/etc/hadoop
-sudo nano nano core-site.xml
+First, make sure you have WordCount.java and the dataset folder that contains pg4300.txt and the 9 target datasets from our github on root (~)
 
-<configuration>
-  <property>
-      <name>fs.defaultFS</name>
-      <value>hdfs://ec2-44-200-190-242.compute-1.amazonaws.com:9000</value>
-    </property>
-</configuration>
-
-```
-
-```bash
-hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.4.jar grep input output 'dfs[a-z.]+'
-
-hadoop jar /home/cloudera/WordCount.jar WordCount /inputnew/inputfile.txt /outputnew
-
-```
-# Hadoop HDFS
----> 
-
-
-# Experiments with WordCount
-
-Hadoop comes with a set of demonstration programs. One of them is WordCount.java which will
-automatically compute the word frequency of all text files found in the HDFS directory you ask it to process.
-
-We create a Worcount.java file with our desire algorithm. 
-
-```bash
-nano WordCount.java
-```
-Then We Compile WordCount.java and create a jar:
-
+Then build WordCount.java
 ```bash
 hadoop com.sun.tools.javac.Main WordCount.java
 jar cf wc.jar WordCount*.class
 ```
-Create a sample input file in a folder name input.txt
-
+Here is an example of command
 ```bash
-hadoop fs -ls /usr/local/hadoop/myexample/input
-#Found 1 items
-#-rw-r--r--   1 root root         62 2022-10-26 05:01 /usr/local/hadoop/myexample/input/input.txt
-```
-Then run it: 
-
-```bash
-hadoop jar wc.jar WordCount /usr/local/hadoop/myexample/input /usr/local/hadoop/myexample/output
-```
-See the Output: 
-
-```bash
-hadoop fs -cat /usr/local/hadoop/myexample/output/part-00000 
+time hadoop jar wc.jar WordCount dataset/pg4300.txt output
 ```
 
+## Running Linux command
+Again, make sure you have the dataset folder from our github on root (~)
 
-I get word count from here: http://svn.apache.org/viewvc/hadoop/common/trunk/hadoop-mapreduce-project/hadoop-mapreduce-examples/src/main/java/org/apache/hadoop/examples/WordCount.java?view=log
-
-
+Compute the word frequency of a text with Linux, using Linux commands and pipes, as follows:
 ```bash
-time hadoop jar wc.jar WordCount dataset/pg4300.txt output3
-time cat pg4300.txt | tr '[:space:]' '[\n*]' | grep -v "^\s*$" | sort | uniq -c 
+time cat dataset/pg4300.txt | tr ' ' '\n' | sort | uniq -c >> output.txt
+```
+We use ```>> output.txt``` so the output is put in a text file instead of saturating the terminal. If you want to check results, you can ```nano``` into it.
+
+## Running Spark
+We have based our sparkWordCount.py from this:
+<https://github.com/apache/spark/blob/master/examples/src/main/python/wordcount.py>
+
+Again, make sure you have sparkWordCount.py and the dataset folder from our github on root (~)
+
+
+Get the spark dependencies
+```bash
+apt-get update
+apt-get install python3-pip 
+pip install pyspark
 ```
 
+Example of spark command
 ```bash
-hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.3.4.jar -input pg4300.txt -output myoutput -mapper mapper.py -reducer reducer.py
+time spark-submit sparkWordCount.py dataset/buchanj-midwinter-00-t.txt
+```
 
+If you get something like spark-submit command not found, you can also do:
+```bash
+ time /usr/local/bin/spark-submit sparkWordCount.py dataset/buchanj-midwinter-00-t.txt
+```
+
+## Running mapper and reducer for “People You Might Know"
+Make sure you have mapper.py, reducer.py and soc-LiveJournal1Adj.txt from our github on root (~)
+
+Install python 2.7, because our mapper and reducer have ```#!/usr/bin/env python```
+```bash
+apt-get install python
+```
+
+Here is the command to run
+```bash
 hadoop jar  /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.3.4.jar  -file mapper.py -mapper mapper.py -file reducer.py -reducer reducer.py -input soc-LiveJournal1Adj.txt -output output
+```
+If you get an error like ```‘python3\r’: No such file or directory```, then it means the formatting of the mapper and reducer are Windows/DOS-style instead of Linux style
 
-hadoop jar  /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.3.4.jar  -file mapper.py -mapper mapper.py -file reducer.py -reducer reducer.py -input friend-test.txt -output output
+There is two options to fix it...
 
+### Option 1:
+You install dos2unix
+```bash
+apt install dos2unix
 ```
 
+And convert the mapper and reducer to unix with a command like this
+```bash
+dos2unix mapper_OR_reducer.py
+```
 
+### Option 2:
+The second option is to simply deleting the mapper.py and reducer.py that are in ~
+```bash
+rm -r mapper.py
+rm -r reducer.py
+```
 
+Touch them
+```bash
+touch mapper.py
+touch reducer.py 
+```
+
+Nano mapper.py and copy-paste its respective code into it
+```bash
+nano mapper.py
+```
+
+Nano reducer.py and copy-paste its respective code into it
+```bash
+nano reducer.py 
+```
