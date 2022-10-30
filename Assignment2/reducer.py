@@ -7,6 +7,10 @@ https://www.michael-noll.com/tutorials/writing-an-hadoop-mapreduce-program-in-py
 
 import sys
 from collections import Counter
+
+#From mapper we have: {'Person_ID': ['Friend_ID', 'Friend_ID',...],...}. Here we want to have most repeated elements for each person. (The first 10 ones as mention in homwork.)
+#First of all get line, split data by "\t" to have both person_id and friends.
+#The rest is magic of python. we have a 
 maxFriend = 10
 for line in sys.stdin:
     line = line.strip()
