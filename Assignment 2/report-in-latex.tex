@@ -65,10 +65,20 @@
 	\pagebreak
 
 \section{Experiments with WordCount program}
-	\paragraph{} Before getting into the performance experiments between Hadoop, Spark and Linux, we began 
-	by experimenting with the WordCount program java example given with both Hadoop and Spark. After installing 
-	the required Java packages and setting up all environment variables required, we proceeded to run the WordCount 
-	example on a copy of pg4300.txt.
+	\paragraph{} Before getting into the performance experiments between Hadoop, Spark and Linux, 
+	we began by experimenting with the WordCount program java example given with both Hadoop and Spark. 
+	After installing the required Java packages and setting up all environment variables required, we 
+	proceeded to run the WordCount example on a copy of pg4300.txt. We made use of the TIME command to
+	be able to extract the time performance of the run. It would provide us with the "real", "user" and
+	"sys" duration of the command executed.
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=140mm, scale=0.5]{images/hadoop-time.png}
+	\includegraphics[width=80mm, scale=0.75]{images/output-pg4300.png}
+	\caption*{\textbf{Figure 1}: Result of Hadoop WordCount.java on pg3000.txt}
+	\end{figure}
+
 
 
 \end{document}
