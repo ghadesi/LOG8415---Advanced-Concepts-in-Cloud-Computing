@@ -105,4 +105,11 @@
 		of data, then we expect Hadoop to outperform easily Linux.
         \bigskip
 
+\section{Performance comparison of Hadoop vs Spark on Azure}
+	\paragraph{} Using the same Azur VM used previously, we used the same method that was used for Hadoop 
+	vs Linux. As such to properly evaluate both Hadoop and Spark, we ran the WordCount with the command 
+	TIME 3 times on each dataset for both. The difference was that, for Spark we used the code in Python. 
+	The file is named SparkWordCount.py.
+	\paragraph{} The command used for Hadoop began with "time hadoop ...", whereas that with Spark began 
+	with "time spark-submit ...". This information is presented in more details in our readme.md.
 \end{document}
