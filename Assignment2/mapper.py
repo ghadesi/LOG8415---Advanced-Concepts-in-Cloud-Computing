@@ -18,7 +18,7 @@ lines = sys.stdin.readlines()
 for line in lines:
     data = line.replace("\n", "").split("\t")
     if data[1] == "" : Data.update({data[0]:[]})
-    else : Data.update({data[0]:data[1].split(",")}
+    else : Data.update({data[0]:data[1].split(",")})
 
 #Here we need to have all friends of friends of each person witouh having his/her friends. There is housands of way to do that. One easy way is use set1-set2:
 #Sets, unlike lists or tuples, cannot have repeated element. 
@@ -31,4 +31,6 @@ for person,personsFriends in Data.items():
         newFriend = list(set(Data[eachFriend]) - set(personsFriends) - set(person))
         if (newFriend) : 
             sugestedFriends.extend(newFriend)
+            if (person in sugestedFriends):
+                sugestedFriends.remove(person)
     print (person + "\t" + str(sugestedFriends))
