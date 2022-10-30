@@ -30,6 +30,4 @@ for person,personsFriends in Data.items():
         newFriend = list(set(Data[eachFriend]) - set(personsFriends) - set(person))
         if (newFriend) : 
             sugestedFriends.extend(newFriend)
-            if (person in sugestedFriends):
-                sugestedFriends.remove(person)
     print (person + "\t" + str(sugestedFriends))
