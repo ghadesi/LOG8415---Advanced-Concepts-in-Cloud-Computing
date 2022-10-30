@@ -24,6 +24,7 @@ for line in lines:
 #Sets, unlike lists or tuples, cannot have repeated element. 
 #set1 - set2 return the set that results when any elements in x2 are removed from x1
 #So if we have friends of a friend and remove all direct friends of person of it, it will be our result. Of course can not have the person himself in his segussted friends!
+#Then if newFriend is not empty we extend our sugestedFriends. extend function is like list_a += list_b.
 for person,personsFriends in Data.items():
     sugestedFriends = []
     for eachFriend in personsFriends:
