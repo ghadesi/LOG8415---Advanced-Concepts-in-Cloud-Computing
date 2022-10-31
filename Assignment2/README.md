@@ -61,6 +61,12 @@ Try to type ```hadoop``` in terminal. If you don't get hadoop menu, then extend 
 export PATH=$PATH:/usr/local/hadoop/bin/
 ```
 
+## Getting the necessary files
+To get hold of the files you will need to run on Hadoop or Spark, you can either ```scp``` the files from our github to the remote VM root's home directory (~), or you can simply ```git clone``` our git repo. Then you can copy the necessary files, that will be specified below, back into root's home directory (~) by using the ```cp``` linux command. Like this:
+```bash
+cp LOG8415---Advanced-Concepts-in-Cloud-Computing/Assignment2/FILE ~
+```
+
 ## Running Hadoop
 We have based our WordCount.java on these websites: [apache.org](<http://svn.apache.org/viewvc/hadoop/common/trunk/hadoop-mapreduce-project/hadoop-mapreduce-examples/src/main/java/org/apache/hadoop/examples/WordCount.java?view=log>) and [stackoverflow.com](<https://stackoverflow.com/questions/26700910/hadoop-java-error-exception-in-thread-main-java-lang-noclassdeffounderror-w>)
 
