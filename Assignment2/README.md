@@ -62,11 +62,8 @@ export PATH=$PATH:/usr/local/hadoop/bin/
 ```
 
 ## Running Hadoop
-We have based our WordCount.java from the following websites:
+We have based our WordCount.java on these websites: [apache.org](<http://svn.apache.org/viewvc/hadoop/common/trunk/hadoop-mapreduce-project/hadoop-mapreduce-examples/src/main/java/org/apache/hadoop/examples/WordCount.java?view=log>) and [stackoverflow.com](<https://stackoverflow.com/questions/26700910/hadoop-java-error-exception-in-thread-main-java-lang-noclassdeffounderror-w>)
 
-<http://svn.apache.org/viewvc/hadoop/common/trunk/hadoop-mapreduce-project/hadoop-mapreduce-examples/src/main/java/org/apache/hadoop/examples/WordCount.java?view=log>
-
-<https://stackoverflow.com/questions/26700910/hadoop-java-error-exception-in-thread-main-java-lang-noclassdeffounderror-w>
 
 First, make sure you have WordCount.java and the dataset folder that contains pg4300.txt and the 9 target datasets from our github on root (~)
 
