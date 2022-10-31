@@ -26,14 +26,14 @@ apt install default-jre -y
 apt install default-jdk -y
 ```
 
-To add the variables related to the JAVA packages, we append following lines at the end of the .profile file and reconfigure the bash variables. 
+To add the variables related to the JAVA packages, we append following lines at the end of the ```.profile``` file and reconfigure the bash variables. 
 ```bash
 echo "export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64" >> ~/.profile
 echo "export PATH=$JAVA_HOME/bin" >> ~/.profile
 source ~/.profile
 ```
 
-Next, get hadoop tar, decompress it and move it to a usr/local/hadoop folder.
+Next, get hadoop tar, decompress it and move it to a ```usr/local/hadoop``` folder.
 
 ```bash
 wget "https://dlcdn.apache.org/hadoop/common/hadoop-3.3.4/hadoop-3.3.4.tar.gz"
@@ -41,7 +41,7 @@ tar -xf hadoop-3.3.4.tar.gz  -C /usr/local/
 mv /usr/local/hadoop-* /usr/local/hadoop
 ```
 
-To add the variables related to the Hadoop package, we append following lines at the end of the .profile file and reconfigure the bash variables. 
+To add the variables related to the Hadoop package, we append following lines at the end of the ```.profile``` file and reconfigure the bash variables. 
 ```bash
 echo "export HADOOP_HOME=/usr/local/hadoop" >> ~/.profile
 echo "export PATH=$PATH:$HADOOP_HOME/bin" >> ~/.profile
@@ -49,7 +49,7 @@ echo "export HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop" >> ~/.profile
 source ~/.profile
 ```
 
-Define following parameters in the "etc/hadoop/hadoop-env.sh" file.
+Define following parameters in the ```etc/hadoop/hadoop-env.sh``` file.
 ```bash
 echo "export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64" >> /usr/local/hadoop/etc/hadoop/hadoop-env.sh
 echo "export HADOOP_PREFIX=/usr/local/hadoop" >> /usr/local/hadoop/etc/hadoop/hadoop-env.sh
@@ -65,20 +65,23 @@ export PATH=$PATH:/usr/local/hadoop/bin/
 We have based our WordCount.java on these websites: [apache.org](<http://svn.apache.org/viewvc/hadoop/common/trunk/hadoop-mapreduce-project/hadoop-mapreduce-examples/src/main/java/org/apache/hadoop/examples/WordCount.java?view=log>) and [stackoverflow.com](<https://stackoverflow.com/questions/26700910/hadoop-java-error-exception-in-thread-main-java-lang-noclassdeffounderror-w>)
 
 
-First, make sure you have WordCount.java and the dataset folder that contains pg4300.txt and the 9 target datasets from our github on root (~)
-
-Then build WordCount.java
+First, we want to make sure that ```WordCount.java``` and the dataset folder that contains ```pg4300.txt``` and the 9 target datasets from our github on the root's home directory. Then build ```WordCount.java```.
 ```bash
 hadoop com.sun.tools.javac.Main WordCount.java
 jar cf wc.jar WordCount*.class
 ```
-Here is an example of command
+Here is an example of command:
 ```bash
 time hadoop jar wc.jar WordCount dataset/pg4300.txt output
 ```
+> The time command is used to determine how long a given command takes to run. It is useful for testing the performance of our scripts and commands.
 
 ## Running Linux command
-Again, make sure you have the dataset folder from our github on root (~)
+
+First, make sure you have the dataset folder from our github on the root's home directory.
+```bash
+root@localhost: cd ~
+```
 
 Compute the word frequency of a text with Linux, using Linux commands and pipes, as follows:
 ```bash
@@ -87,20 +90,18 @@ time cat dataset/pg4300.txt | tr ' ' '\n' | sort | uniq -c >> output.txt
 We use ```>> output.txt``` so the output is put in a text file instead of saturating the terminal. If you want to check results, you can ```nano``` into it.
 
 ## Running Spark
-We have based our sparkWordCount.py from this:
-<https://github.com/apache/spark/blob/master/examples/src/main/python/wordcount.py>
+We have based our sparkWordCount.py from this [link](<https://github.com/apache/spark/blob/master/examples/src/main/python/wordcount.py>).
 
-Again, make sure you have sparkWordCount.py and the dataset folder from our github on root (~)
+Again, make sure you have ```sparkWordCount.py``` and the dataset folder from our github on the root's home directory.
 
-
-Get the spark dependencies
+Get the spark dependencies.
 ```bash
 apt-get update
 apt-get install python3-pip 
 pip install pyspark
 ```
 
-Example of spark command
+Example of spark command:
 ```bash
 time spark-submit sparkWordCount.py dataset/buchanj-midwinter-00-t.txt
 ```
@@ -111,7 +112,7 @@ If you get something like spark-submit command not found, you can also do:
 ```
 
 ## Running mapper and reducer for “People You Might Know"
-Make sure you have mapper.py, reducer.py and soc-LiveJournal1Adj.txt from our github on root (~)
+Make sure you have mapper.py, reducer.py and soc-LiveJournal1Adj.txt from our github on the root's home directory.
 
 Install python 2.7, because our mapper and reducer have ```#!/usr/bin/env python```
 ```bash
@@ -132,13 +133,13 @@ You install dos2unix
 apt install dos2unix
 ```
 
-And convert the mapper and reducer to unix with a command like this
+And convert the mapper and reducer to unix with a command like this.
 ```bash
 dos2unix mapper_OR_reducer.py
 ```
 
 ### Option 2:
-The second option is to simply deleting the mapper.py and reducer.py that are in ~
+The second option is to simply deleting the mapper.py and reducer.py that are in the home directory.
 ```bash
 rm -r mapper.py
 rm -r reducer.py
