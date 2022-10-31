@@ -2,7 +2,7 @@
 
 We did this assignement on an Azure Ubuntu VM
 
-Once in the Azure VM terminal, make sure you are in ~
+Once in the Azure VM terminal, make sure you are in the user's home directory. By the below command you change your directory to the home directory.
 ```bash
 cd ~
 ```
