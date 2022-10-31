@@ -7,7 +7,7 @@ Once in the Azure VM terminal, make sure you are in the user's home directory. B
 cd ~
 ```
 
-Go to admin mode so you don't need to sudo all the time and no permissions problem
+By switching to the root privilege mode, we don't need to sudo all the time and no permissions problem. 
 ```bash
 sudo su
 ```
