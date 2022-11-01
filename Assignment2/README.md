@@ -62,7 +62,12 @@ export PATH=$PATH:/usr/local/hadoop/bin/
 ```
 
 ## Getting the necessary files
-To get hold of the files you will need to run on Hadoop or Spark, you can either ```scp``` the files from our github to the remote VM root's home directory ```~```, or you can simply ```git clone``` our git repo. Then you can copy the necessary files, that will be specified below, back into root's home directory ```~``` by using the ```cp``` linux command. Like this:
+To get hold of the files you will need to run on Hadoop or Spark, you can either ```scp``` the files from our github to the remote VM root's home directory ```~```, or you can simply ```git clone``` our git repo. 
+```bash
+git clone https://github.com/ghadesi/LOG8415---Advanced-Concepts-in-Cloud-Computing.git
+```
+
+Then you can copy the necessary files, that will be specified below, back into root's home directory ```~``` by using the ```cp``` linux command. Like this:
 ```bash
 cp LOG8415---Advanced-Concepts-in-Cloud-Computing/Assignment2/FILE ~
 ```
